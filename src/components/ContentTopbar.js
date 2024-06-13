@@ -5,6 +5,7 @@ import { Container } from "reactstrap";
 import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom'
 
 import Topbar from "./TopbarHome";
+import './SidebarHomeMenu.css';
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container

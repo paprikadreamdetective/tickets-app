@@ -4,9 +4,13 @@ import {
   faHome,
   faBriefcase,
   faPaperPlane,
-  faQuestion,
-  faImage,
+  faUser,
+  faList,
   faCopy,
+  faTicket,
+  faGears,
+  faDashboard,
+  faNewspaper
 } from "@fortawesome/free-solid-svg-icons";
 import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
@@ -24,33 +28,50 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                 <h3>Sidebar</h3>
             </div>
             <div className="side-menu">
-                <Nav vertical className="list-unstyled pb-3">
-                    <p>Dummy Heading</p>
-                    
+                <Nav vertical className="custom-nav">
+                    <p>Menu</p>
                     <NavItem>
-                    <NavLink tag={Link} to={"/about"}>
-                        <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
-                        About
-                    </NavLink>
-                    </NavItem>
-                    
-                    <NavItem>
-                    <NavLink tag={Link} to={"/pages"}>
-                        <FontAwesomeIcon icon={faImage} className="mr-2" />
-                        Portfolio
-                    </NavLink>
+                        <NavLink tag={Link} to={"/about"}>
+                            <FontAwesomeIcon icon={faDashboard} className="mr-1" />
+                            Dashboard
+                        </NavLink>
                     </NavItem>
                     <NavItem>
-                    <NavLink tag={Link} to={"/faq"}>
-                        <FontAwesomeIcon icon={faQuestion} className="mr-2" />
-                        FAQ
-                    </NavLink>
+                        <NavLink tag={Link} to={"/about"}>
+                        
+                            <FontAwesomeIcon icon={faTicket} className="mr-1" />
+                            Tickets
+                        </NavLink>
                     </NavItem>
                     <NavItem>
-                    <NavLink tag={Link} to={"/contact"}>
-                        <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-                        Contact
-                    </NavLink>
+                        <NavLink tag={Link} to={"/contact"}>
+                            <FontAwesomeIcon icon={faNewspaper} className="mr-2" />
+                            Tipos de requerimientos
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/pages"}>
+                            <FontAwesomeIcon icon={faList} className="mr-2" />
+                            Areas
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/faq"}>
+                            <FontAwesomeIcon icon={faUser} className="mr-2" />
+                            Usuarios
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/contact"}>
+                            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+                            Contacto
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/settings"}>
+                            <FontAwesomeIcon icon={faGears} className="mr-2" />
+                            Configuracion
+                        </NavLink>
                     </NavItem>
                 </Nav>
             </div>

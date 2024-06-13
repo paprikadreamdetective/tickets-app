@@ -79,6 +79,7 @@
     cursor: pointer;
     display: none;
   }
+  
   .side-menu {
     height: calc(100vh - 130px);
     overflow-y: scroll;
@@ -131,5 +132,20 @@
       position: relative;
       left: 68%;
     }
+  }
+
+  /* NavStyles.css */
+.custom-nav {
+    background-color: #6d7fcc;
+    padding: 10px;
+  }
+  
+  .custom-nav .nav-link {
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .custom-nav .nav-link:hover {
+    color: #6d7fcc;
   }
   
