@@ -1,5 +1,5 @@
 
-body {
+.sign-in-body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     background-image: url(../pics/poste-alta-tension-o-torre-alta-tension.jpg);
@@ -53,6 +53,7 @@ body {
     display: block;
     top: 50%;
     transform: translate(-50%, -50%);*/
+    color: black;
     background: rgba(255, 255, 255, 0.085);
     box-shadow: 0 15px 20px rgba(0, 0, 0, .4);
 }
