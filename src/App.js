@@ -7,9 +7,7 @@ function App() {
     <>
       <SignIn></SignIn>
     </>
-  
   );
-  
 }
 
 export default App;

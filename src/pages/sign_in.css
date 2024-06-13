@@ -2,9 +2,15 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    background-image: url(../pics/poste-alta-tension-o-torre-alta-tension.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 500px; /* Ajusta según tus necesidades */
+
     height: 100vh;
 }
 
@@ -13,23 +19,42 @@ body {
     width: 100%;
     max-width: 1200px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, .4);
+}
+
+.contenido {
+    color: black;
+    font-size: 20px;
 }
 
 .box {
     flex: 1;
-    padding: 20px;
+    padding: 100px;
     border-right: 1px solid #ddd;
+    
 }
 
 #left-box {
     background-color: #f9f9f9;
 }
+/*
+#right-box {
+    
+    /*background-color: rgb(255, 255, 255);*/
+    /*background-color: #fff;
+}*/
 
 #right-box {
-    background-color: #fff;
+    /*position: relative;
+    display: block;
+    top: 50%;
+    transform: translate(-50%, -50%);*/
+    background: rgba(255, 255, 255, 0.085);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, .4);
 }
 
 .box:last-child {

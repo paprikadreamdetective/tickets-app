@@ -6,13 +6,13 @@ const SignIn = () => {
     return (
         <div class="container">
             <div class="box" id="left-box">
-                <h2>Contenedor Izquierdo</h2>
+                <h2>[Logo]</h2>
                 <p>Contenido del contenedor izquierdo.</p>
             </div>
-            <div class="box" id="right-box">
-                <h2>Contenedor Derecho</h2>
-                <p>Contenido del contenedor derecho.</p>
-                <AuthUserForm></AuthUserForm>
+            <div class="contenido">
+                <div class="box" id="right-box" >
+                    <AuthUserForm></AuthUserForm>
+                </div>
             </div>
         </div>
     );
