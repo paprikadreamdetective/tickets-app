@@ -10,15 +10,26 @@ import {
   faTicket,
   faGears,
   faDashboard,
-  faNewspaper
+  faNewspaper,
+  faChartLine,
+  faCircleExclamation
 } from "@fortawesome/free-solid-svg-icons";
 import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import './SidebarHomeMenu.css'
 
 function SidebarHomeMenu({ isOpen, toggle }) {
+
+    const navigate = useNavigate()
+    const handleHomeToTicket = () => {
+        // Realizar lógica de autenticación aquí
+    
+        // Redirigir al componente Home después de iniciar sesión
+        navigate("/tickets_home");
+    };
+
     return (
         <div className={classNames("sidebar", { "is-open": isOpen })}>
             <div className="sidebar-header">
@@ -31,15 +42,15 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                 <Nav vertical className="custom-nav">
                     <p>Menu</p>
                     <NavItem>
-                        <NavLink tag={Link} to={"/about"}>
+                        <NavLink tag={Link} to={"/dashboard"}>
                             <FontAwesomeIcon icon={faDashboard} className="mr-1" />
                             Dashboard
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/about"}>
                         
-                            <FontAwesomeIcon icon={faTicket} className="mr-1" />
+                        <NavLink tag={Link} to="tickets_home" activeClassName="active" className="nav-link">
+                            <FontAwesomeIcon icon={faTicket} className="mr-2" />
                             Tickets
                         </NavLink>
                     </NavItem>
@@ -50,7 +61,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/pages"}>
+                        <NavLink tag={Link} to={"/pages"} >
                             <FontAwesomeIcon icon={faList} className="mr-2" />
                             Areas
                         </NavLink>
@@ -63,8 +74,14 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"/contact"}>
-                            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
-                            Contacto
+                            <FontAwesomeIcon icon={faChartLine} className="mr-2" />
+                            Reportes
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/contact"}>
+                            <FontAwesomeIcon icon={faCircleExclamation} className="mr-2" />
+                            Problemas
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -73,9 +90,13 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                             Configuracion
                         </NavLink>
                     </NavItem>
+                    
                 </Nav>
+                
             </div>
+            
         </div>
+        
     );
 }
 export default SidebarHomeMenu;

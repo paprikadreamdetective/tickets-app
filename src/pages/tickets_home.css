@@ -1,0 +1,37 @@
+/* styles.css */
+
+/* Asegura que el contenedor ocupe el ancho completo */
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ajusta la altura mínima al 100% del viewport */
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+    padding: 20px;
+}
+
+
+/* Estilo responsivo para la tabla */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Asegura que la tabla ocupe el ancho completo del contenedor */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+/* Opcional: Mejoras de estilo para tablas pequeñas */
+.table th, .table td {
+    white-space: nowrap;
+}
