@@ -42,7 +42,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                 <Nav vertical className="custom-nav">
                     <p>Menu</p>
                     <NavItem>
-                        <NavLink tag={Link} to={"/dashboard"}>
+                        <NavLink tag={Link} to={"dashboard"}>
                             <FontAwesomeIcon icon={faDashboard} className="mr-1" />
                             Dashboard
                         </NavLink>

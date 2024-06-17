@@ -7,9 +7,9 @@ import SignIn from './pages/sign_in';
 import Home from './pages/home';
 import Tickets from './pages/tickets_home';
 import ReporteTabla from './pages/reports';
+import Charts from './pages/dashboard';
 
 function App(){
-  
 const data = [
   { id: 1, nombre: "Juan Pérez", email: "juan.perez@example.com", noTicket: "001", asunto: "Problema de acceso", area: "Soporte Técnico", estado: "Abierto" },
   { id: 2, nombre: "María Gómez", email: "maria.gomez@example.com", noTicket: "002", asunto: "Consulta de facturación", area: "Finanzas", estado: "Cerrado" },
@@ -25,6 +25,7 @@ const data = [
           <Route path="home" element={<Home />}>
             <Route path="tickets_home" element={<Tickets />} />
             <Route path="reports" element={<ReporteTabla data={data} />} />
+            <Route path="dashboard" element={<Charts/>}/> 
           </Route>
       </Routes>
     </BrowserRouter>
