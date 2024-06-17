@@ -19,7 +19,7 @@ import classNames from "classnames";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import './SidebarHomeMenu.css'
-
+import Logo from '../pics/1.png'
 function SidebarHomeMenu({ isOpen, toggle }) {
 
     const navigate = useNavigate()
@@ -36,7 +36,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                 <span color="info" onClick={toggle} style={{ color: "#fff" }}>
                     &times;
                 </span>
-                <h3>Sidebar</h3>
+            <img src={Logo} width="200" height="150"/> 
             </div>
             <div className="side-menu">
                 <Nav vertical className="custom-nav">

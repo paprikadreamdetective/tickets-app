@@ -6,12 +6,12 @@ function SignIn() {
     return (
         <div className='sign-in-body'>
             <div class="container">
-                <div class="box" id="left-box">
+                {/*<div class="box" id="left-box">
                     <h2>[Logo]</h2>
                     <p>Contenido del contenedor izquierdo.</p>
-                </div>
+                </div>*/}
                 <div class="contenido">
-                    <div class="box" id="right-box" >
+                    <div class="box" >
                         <AuthUserForm></AuthUserForm>
                     </div>
                 </div>
