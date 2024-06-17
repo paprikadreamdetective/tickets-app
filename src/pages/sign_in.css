@@ -17,7 +17,7 @@
 .container {
     display: flex;
     padding: 5px;
-    width: 100px;
+    width: 50px;
     
     /*width: 90%;
     max-width: 600px;*/
@@ -31,20 +31,19 @@
   align-items: center; /* alinea horizontalmente */
 
 }
-
+/*
 .contenido {
     padding: 20px;
     width: 550px;
     color: black;
     
     font-size: 15px;
-}
+}*/
 
 .box {
     flex: 1;
-    padding: 70px;
-    border-right: 1px solid #ddd;
-    
+    padding: 60px;
+    border-right: 1px solid #ddd;   
 }
 
 #left-box {
