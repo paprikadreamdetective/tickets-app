@@ -10,7 +10,9 @@ function SignIn() {
                     <h2>[Logo]</h2>
                     <p>Contenido del contenedor izquierdo.</p>
                 </div>*/}
+
                 <div class="contenido">
+                    <img>/</img>
                     <div class="box" >
                         <AuthUserForm></AuthUserForm>
                     </div>
