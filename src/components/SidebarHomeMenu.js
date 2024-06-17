@@ -73,7 +73,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/contact"}>
+                        <NavLink tag={Link} to={"reports"}>
                             <FontAwesomeIcon icon={faChartLine} className="mr-2" />
                             Reportes
                         </NavLink>

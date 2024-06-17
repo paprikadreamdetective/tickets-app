@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Sidebar from "../components/Sidebar";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import SidebarHomeMenu from "../components/SidebarHomeMenu";
 import Content from "../components/ContentTopbar";
