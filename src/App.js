@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AnimateSharedLayout, LayoutGroup, motion } from 'framer-motion';
 import './App.css';
 
 import SignIn from './pages/sign_in';
@@ -8,6 +8,8 @@ import Home from './pages/home';
 import Tickets from './pages/tickets_home';
 import ReporteTabla from './pages/reports';
 import Charts from './pages/dashboard';
+import SignInImpostor from './pages/sign_in_impostor';
+
 
 function App(){
 const data = [
@@ -20,14 +22,19 @@ const data = [
 ];
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SignIn />}/>
-          <Route path="home" element={<Home />}>
-            <Route path="tickets_home" element={<Tickets />} />
-            <Route path="reports" element={<ReporteTabla data={data} />} />
-            <Route path="dashboard" element={<Charts/>}/> 
-          </Route>
-      </Routes>
+      <LayoutGroup>
+        
+          <Routes>
+            <Route path="/" element={<SignIn />}/>
+              <Route path="home" element={<Home />}>
+                <Route path="tickets_home" element={<Tickets />} />
+                <Route path="reports" element={<ReporteTabla data={data} />} />
+                <Route path="dashboard" element={<Charts/>}/>
+              </Route>
+              <Route path="/impostor" element={<SignInImpostor/>}/>
+          </Routes>
+  
+      </LayoutGroup>
     </BrowserRouter>
   );
 }

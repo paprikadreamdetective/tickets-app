@@ -2,7 +2,7 @@
 import React from 'react';
 import { Bar, Pie, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, LineElement, PointElement } from 'chart.js';
-
+import { motion } from 'framer-motion';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -82,7 +82,20 @@ const lineData = {
 
 const Charts = () => {
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <motion.div 
+      style={{ display: 'flex', gap: '20px' }}
+      initial={{
+        opacity: 0.7,
+      }}
+      animate={{
+          opacity: 1.5,
+          transition: { duration: 1.5 },
+      }}
+      exit={{
+          opacity: 0.7,
+          transition: { duration: 3.5 },
+      }}
+    >
       <div style={{ flex: 1 }}>
         <h2>Gráfico de Barras</h2>
         <Bar data={barData} />
@@ -95,7 +108,7 @@ const Charts = () => {
         <h2>Gráfico de Líneas</h2>
         <Line data={lineData} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

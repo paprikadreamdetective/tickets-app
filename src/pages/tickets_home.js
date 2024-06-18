@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { motion } from "framer-motion";
 import {
   Table,
   Button,
@@ -88,7 +89,19 @@ const Tickets = () => {
     };
 
   return (
-    <>
+    <motion.div
+      initial={{
+        opacity: 0.2,
+      }}
+      animate={{
+          opacity: 5.5,
+          transition: { duration: 1.5 },
+      }}
+      exit={{
+          opacity: 0.7,
+          transition: { duration: 3.5 },
+      }}
+    >
     <br />
         <Button color="success" onClick={mostrarModalInsertar}>Crear Ticket</Button>
         <br />
@@ -241,7 +254,7 @@ const Tickets = () => {
           <Button className="btn btn-danger" onClick={cerrarModalInsertar}>Cancelar</Button>
         </ModalFooter>
       </Modal>
-    </>
+    </motion.div>
   );
 };
 

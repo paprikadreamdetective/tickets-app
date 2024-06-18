@@ -19,7 +19,7 @@ import classNames from "classnames";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import './SidebarHomeMenu.css'
-import Logo from '../pics/1.png'
+import Logo from '../pics/sima-logo-letters.png'
 function SidebarHomeMenu({ isOpen, toggle }) {
 
     const navigate = useNavigate()
@@ -85,7 +85,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/settings"}>
+                        <NavLink tag={Link} to={"impostor"}>
                             <FontAwesomeIcon icon={faGears} className="mr-2" />
                             Configuracion
                         </NavLink>

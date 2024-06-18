@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
+import { motion } from 'framer-motion';
 import "bootstrap/dist/css/bootstrap.min.css";
 import SidebarHomeMenu from "../components/SidebarHomeMenu";
 import Content from "../components/ContentTopbar";
@@ -12,13 +12,25 @@ function Home() {
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
     return (
         <>
-            <div className="App wrapper">
+            <motion.div 
+                initial={{
+                    opacity: 0.7,
+                }}
+                animate={{
+                    opacity: 1,
+                    transition: { duration: 0.5 },
+                }}
+                exit={{
+                    opacity: 0.7,
+                    transition: { duration: 3.5 },
+                }}
+                className="App wrapper">
             <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
             {/*<Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />*/}
             <div className="content">
                 <Outlet />
             </div>
-            </div>
+            </motion.div>
         </>
     );
 }
