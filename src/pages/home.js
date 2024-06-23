@@ -1,15 +1,31 @@
-import { useState } from "react";
-import { Outlet } from 'react-router-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { motion } from 'framer-motion';
-import "bootstrap/dist/css/bootstrap.min.css";
 import SidebarHomeMenu from "../components/SidebarHomeMenu";
 import Content from "../components/ContentTopbar";
 import Tickets from "./tickets_home";
 
+import { useEffect } from "react";
+import { useState } from "react";
+import { Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { motion } from 'framer-motion';
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+
 function Home() {
     const [sidebarIsOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
+
+    useEffect(() => {
+        (async () => {
+          try {
+            const resp = await axios.get("http://localhost:5000/@me");
+            //setUser(resp.data);
+          } catch (error) {
+            console.log("Not authenticated");
+          }
+        })();
+    }, []);
+
     return (
         <>
             <motion.div 
