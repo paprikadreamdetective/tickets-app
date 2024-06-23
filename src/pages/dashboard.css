@@ -1,0 +1,38 @@
+/* dashboard.css */
+
+.container {
+    display: flex;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.left {
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.right {
+    flex: 1;
+    padding: 10px;
+}
+
+.profile-picture-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture-container img {
+    width: 100%;
+    display: block;
+}
+
+.profile-picture-container .btn-file {
+    display: block;
+    margin-top: 10px;
+}
+
+.card-header .float-right {
+    display: flex;
+    align-items: center;
+}

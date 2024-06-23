@@ -1,10 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import { AnimateSharedLayout, LayoutGroup, motion } from 'framer-motion';
-
-import './App.css';
-
 
 import SignIn from './pages/sign_in';
 import Home from './pages/home';
@@ -12,6 +5,16 @@ import Tickets from './pages/tickets_home';
 import ReporteTabla from './pages/reports';
 import Charts from './pages/dashboard';
 import SignInImpostor from './pages/sign_in_impostor';
+import Dashboard from './pages/best_dashboard';
+
+
+
+
+import React from 'react';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { AnimateSharedLayout, LayoutGroup, motion } from 'framer-motion';
+import './App.css';
 
 
 
@@ -36,7 +39,8 @@ function App(){
               <Route path="home" element={<Home />}>
                 <Route path="tickets_home" element={<Tickets />} />
                 <Route path="reports" element={<ReporteTabla data={data} />} />
-                <Route path="dashboard" element={<Charts/>}/>
+                <Route path="dashboard" element={<Dashboard/>}/>
+
               </Route>
               <Route path="/impostor" element={<SignInImpostor/>}/>
           </Routes>
