@@ -11,11 +11,17 @@ function UsersPage() {
 
     return (
         <div className="App">
-            <h1>Lista de Usuarios</h1>
+            <h1 style = {{ 'text-align': 'center'}}>Lista de Usuarios</h1>
             <ul>
                 {users.map(user => (
                     <li key={user.id}>
-                        <strong>Usuario:</strong> {user.nombre_usuario}, <strong>Email:</strong> {user.correo_usuario}
+                        <br></br>
+                        <strong>ID:</strong> {user.id_usuario},
+                        <strong>Nombre:</strong> {user.nombre_usuario}, 
+                        <strong>Apellido Paterno:</strong> {user.apellido_paterno}, 
+                        <strong>Apellido Materno:</strong> {user.apellido_materno},
+                        <strong>Email:</strong> {user.correo_usuario},
+                        <strong>Area:</strong> {user.nombre_area}
                     </li>
                 ))}
             </ul>
