@@ -6,7 +6,7 @@ import ReporteTabla from './pages/reports';
 import Charts from './pages/dashboard';
 import SignInImpostor from './pages/sign_in_impostor';
 import Dashboard from './pages/best_dashboard';
-
+import UsersPage from './pages/users';
 
 
 
@@ -40,7 +40,7 @@ function App(){
                 <Route path="tickets_home" element={<Tickets />} />
                 <Route path="reports" element={<ReporteTabla data={data} />} />
                 <Route path="dashboard" element={<Dashboard/>}/>
-
+                <Route path="users" element={<UsersPage/>}/>
               </Route>
               <Route path="/impostor" element={<SignInImpostor/>}/>
           </Routes>

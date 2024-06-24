@@ -67,7 +67,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/faq"}>
+                        <NavLink tag={Link} to={"users"}>
                             <FontAwesomeIcon icon={faUser} className="mr-2" />
                             Usuarios
                         </NavLink>
