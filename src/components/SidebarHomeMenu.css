@@ -5,11 +5,11 @@
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+/*
 body {
   font-family: "Poppins", sans-serif;
   background: #fafafa;
-}
+}*/
 
 a,
 a:hover,
@@ -81,7 +81,7 @@ li a.dropdown-toggle::after {
 }
 
 .side-menu {
-  height: calc(100vh - 130px);
+  height: calc(150vh - 200px);
   overflow-y: scroll;
 }
 

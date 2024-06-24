@@ -36,7 +36,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                 <span color="info" onClick={toggle} style={{ color: "#fff" }}>
                     &times;
                 </span>
-            <img src={Logo} width="200" height="150"/> 
+                <img src={Logo} width="200" height="150"/> 
             </div>
             <div className="side-menu">
                 <Nav vertical className="custom-nav">

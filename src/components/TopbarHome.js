@@ -21,7 +21,7 @@ const Topbar = ({ toggleSidebar }) => {
       color="light"
       light
       className="navbar shadow-sm p-3 mb-5 bg-white rounded"
-      expand="md"
+      
     >
       <Button color="info" onClick={toggleSidebar}>
         <FontAwesomeIcon icon={faAlignLeft} />

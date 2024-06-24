@@ -1,6 +1,8 @@
 import SidebarHomeMenu from "../components/SidebarHomeMenu";
 import Content from "../components/ContentTopbar";
 import Tickets from "./tickets_home";
+import Topbar from "../components/TopbarHome";
+
 
 import { useEffect } from "react";
 import { useState } from "react";
@@ -9,9 +11,27 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { motion } from 'framer-motion';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "reactstrap";
 
 
 function Home() {
+
+    const [collapsed, setCollapsed] = useState(false);
+    const [image, setImage] = useState(false);
+    const [toggled, setToggled] = useState(false);
+
+    const handleCollapsedChange = () => {
+        setCollapsed(!collapsed);
+    };
+
+    const handleImageChange = (checked) => {
+        setImage(checked);
+    };
+
+    const handleToggleSidebar = (value) => {
+        setToggled(value);
+    }; 
+
     const [sidebarIsOpen, setSidebarOpen] = useState(true);
     const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
 
@@ -27,7 +47,7 @@ function Home() {
     }, []);
 
     return (
-        <>
+            
             <motion.div 
                 initial={{
                     opacity: 0.7,
@@ -41,13 +61,19 @@ function Home() {
                     transition: { duration: 3.5 },
                 }}
                 className="App wrapper">
-            <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+                    <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+                    <div className="content">
+                    
+            
+            
+            
             {/*<Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />*/}
-            <div className="content">
+            
+            
                 <Outlet />
             </div>
             </motion.div>
-        </>
+       
     );
 }
 
