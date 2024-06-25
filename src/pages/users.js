@@ -77,6 +77,26 @@ function UsersPage() {
         }
       };
 
+
+    const handleDeleteUser = async (id) => {
+        try {
+            const response = await fetch('http://localhost:5000/remove_user', {
+                method: 'POST',
+            });
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            
+            if (response.ok) {
+                setUsers(users.filter(user => user.id_usuario !== id));
+            } else {
+                console.error('Error al eliminar el usuario:', responseData.message);
+            }
+            
+        } catch (error) {
+            console.error('Error al eliminar el usuario:', error);
+        }
+    };
+
     useEffect(() => {
         fetch('http://localhost:5000/get_users')  
             .then(response => response.json())
@@ -118,10 +138,10 @@ function UsersPage() {
                         <td>{user.correo_usuario}</td>
                         <td>{user.nombre_area}</td>
                         <td>
-                        <Button color="primary" value={user.id}>
+                        <Button color="primary" >
                             Editar
                         </Button>{" "}
-                        <Button color="danger" >Eliminar</Button>
+                        <Button color="danger" onClick={() => handleDeleteUser(user.id_usuario)} >Eliminar</Button>
                         </td>
                     </tr>
                     ))}
