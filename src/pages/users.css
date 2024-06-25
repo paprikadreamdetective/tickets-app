@@ -1,0 +1,19 @@
+
+.users-table-container {
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
+    padding: 20px;
+}
+
+/* Estilo responsivo para la tabla */
+.users-table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.users-table-thead {
+    background-color: #4CAF50; /* Cambia el color de fondo aquí */
+    color: white; /* Cambia el color del texto aquí */
+}

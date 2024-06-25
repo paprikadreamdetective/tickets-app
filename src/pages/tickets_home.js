@@ -41,7 +41,7 @@ const Tickets = () => {
   const cerrarModalActualizar = () => {
     setModalActualizar(false);
   };
-
+  
   const mostrarModalInsertar = () => {
     setModalInsertar(true);
   };
