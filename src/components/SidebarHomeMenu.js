@@ -44,50 +44,50 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                     <NavItem>
                         <NavLink tag={Link} to={"dashboard"}>
                             <FontAwesomeIcon icon={faDashboard} className="mr-1" />
-                            Dashboard
+                            {"              "} Dashboard
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         
                         <NavLink tag={Link} to="tickets_home" activeClassName="active" className="nav-link">
                             <FontAwesomeIcon icon={faTicket} className="mr-2" />
-                            Tickets
+                            {"              "} Tickets
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"/contact"}>
                             <FontAwesomeIcon icon={faNewspaper} className="mr-2" />
-                            Tipos de requerimientos
+                            {"              "} Tipos de requerimientos
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"/pages"} >
                             <FontAwesomeIcon icon={faList} className="mr-2" />
-                            Areas
+                            {"              "} Areas
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"users"}>
                             <FontAwesomeIcon icon={faUser} className="mr-2" />
-                            Usuarios
+                            {"              "} Usuarios
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"reports"}>
                             <FontAwesomeIcon icon={faChartLine} className="mr-2" />
-                            Reportes
+                            {"              "} Reportes
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"/contact"}>
                             <FontAwesomeIcon icon={faCircleExclamation} className="mr-2" />
-                            Problemas
+                            {"              "} Problemas
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink tag={Link} to={"impostor"}>
                             <FontAwesomeIcon icon={faGears} className="mr-2" />
-                            Configuracion
+                            {"              "} Configuracion
                         </NavLink>
                     </NavItem>
                     

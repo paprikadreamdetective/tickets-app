@@ -41,7 +41,7 @@ function SignIn() {
                         <AuthUserForm></AuthUserForm>
                     </div>
                 </MDBCol>
-                <MDBCol col='6' className="mb-5">
+                {/*<MDBCol col='6' className="mb-5">
                 
                     
                     
@@ -54,7 +54,7 @@ function SignIn() {
                         </p>
                         </div>
                     </div>
-                </MDBCol>
+                </MDBCol>*/}
             </MDBRow>
         </div>
     );

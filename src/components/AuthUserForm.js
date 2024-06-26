@@ -22,20 +22,28 @@ const AuthUserForm = () => {
         });
         const data = response.data;
         if (data.success) {
-          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('id', data.user.id)
+          sessionStorage.setItem('name', data.user.name);
+          sessionStorage.setItem('email', data.user.email);
+          sessionStorage.setItem('role', data.user.role);
+          
           console.log('Sesion de: ', username)
           //setUsername('')
           setPassword('')
           setMessage(data.message);
+          window.alert("Usuario: " + sessionStorage.getItem('username') + " Autenticado con exito")
   
           
           navigate("/home");
           //history.push('/home');
         } else {
           setMessage(data.message);
+          
+          
         }
       } catch (error) {
         setMessage('Error al procesar la solicitud');
+        window.alert("Alerta: " + message);
       }
     // Redirigir al componente Home después de iniciar sesión
     };

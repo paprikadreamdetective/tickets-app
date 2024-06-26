@@ -18,6 +18,22 @@ import {
 } from 'mdb-react-ui-kit';
 
 
+const uploadProfilePic = async (imageFile) => {
+    const formData = new FormData();
+    formData.append('id', sessionStorage.getItem('id'))
+    formData.append('file', imageFile);
+    try {
+        const response = await fetch('http://localhost/change_profile_pic', {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.error('Error al subir la imagen:', error);
+    }
+};
+
 function InfoProfileDashboard() {
     return (
         <>
@@ -45,13 +61,21 @@ function InfoProfileDashboard() {
                                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                 alt="avatar"
                                 className="rounded-circle"
-                                style={{ width: '150px' }}
+                                style={{ width: '200px' }}
                                 fluid />
-                                <p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                {/*<p className="text-muted mb-1">Full Stack Developer</p>
+                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>*/}
                                 <div className="d-flex justify-content-center mb-2">
-                                <MDBBtn>Follow</MDBBtn>
-                                <MDBBtn outline className="ms-1">Message</MDBBtn>
+                                {/*<MDBBtn>
+                                    Cambiar foto de perfil
+                                </MDBBtn>*/}
+                                <div>
+                                    <label class="form-label">Cambiar foto de perfil</label>
+                                    <input type="file" class="form-control" onChange={uploadProfilePic}/> 
+                                </div> 
+                                
+                                
+                                {/*<MDBBtn outline className="ms-1">Message</MDBBtn>*/}
                                 </div>
                             </MDBCardBody>
                             </MDBCard>
@@ -89,10 +113,23 @@ function InfoProfileDashboard() {
                             <MDBCardBody>
                                 <MDBRow>
                                 <MDBCol sm="3">
-                                    <MDBCardText>Full Name</MDBCardText>
+                                    <MDBCardText>ID Usuario</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
+
                                     <MDBCardText className="text-muted">{sessionStorage.getItem('username')}</MDBCardText>
+
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('id')}</MDBCardText>
+                                </MDBCol>
+                                </MDBRow>
+                                <hr />
+                                <MDBRow>
+                                <MDBCol sm="3">
+                                    <MDBCardText>Nombre completo</MDBCardText>
+                                </MDBCol>
+                                <MDBCol sm="9">
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('name')}</MDBCardText>
+
                                 </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -101,25 +138,16 @@ function InfoProfileDashboard() {
                                     <MDBCardText>Email</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('email')}</MDBCardText>
                                 </MDBCol>
                                 </MDBRow>
                                 <hr />
                                 <MDBRow>
                                 <MDBCol sm="3">
-                                    <MDBCardText>Phone</MDBCardText>
+                                    <MDBCardText>Rol</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
-                                </MDBCol>
-                                </MDBRow>
-                                <hr />
-                                <MDBRow>
-                                <MDBCol sm="3">
-                                    <MDBCardText>Mobile</MDBCardText>
-                                </MDBCol>
-                                <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('role')}</MDBCardText>
                                 </MDBCol>
                                 </MDBRow>
                                 <hr />
