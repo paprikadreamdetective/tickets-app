@@ -92,7 +92,7 @@ function InfoProfileDashboard() {
                                     <MDBCardText>Full Name</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
-                                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('username')}</MDBCardText>
                                 </MDBCol>
                                 </MDBRow>
                                 <hr />
