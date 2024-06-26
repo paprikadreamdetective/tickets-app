@@ -22,9 +22,13 @@ const AuthUserForm = () => {
         });
         const data = response.data;
         if (data.success) {
-          setUsername('')
+          sessionStorage.setItem('username', username);
+          console.log('Sesion de: ', username)
+          //setUsername('')
           setPassword('')
           setMessage(data.message);
+  
+          
           navigate("/home");
           //history.push('/home');
         } else {
