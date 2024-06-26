@@ -9,6 +9,7 @@ import {
     FormGroup,
     ModalFooter,
   } from "reactstrap";
+import axios from 'axios';
 import './users.css';
 
 function UsersPage() {
@@ -77,23 +78,14 @@ function UsersPage() {
         }
       };
 
-
-    const handleDeleteUser = async (id) => {
-        try {
-            const response = await fetch('http://localhost:5000/remove_user', {
-                method: 'POST',
-            });
-            const responseData = await response.json();
-            console.log('Respuesta del servidor:', responseData);
-            
-            if (response.ok) {
-                setUsers(users.filter(user => user.id_usuario !== id));
-            } else {
-                console.error('Error al eliminar el usuario:', responseData.message);
-            }
-            
-        } catch (error) {
-            console.error('Error al eliminar el usuario:', error);
+    const handleDeleteUser = (id) => {
+        const option = window.confirm("Estás Seguro que deseas Eliminar el elemento " + id);
+        if (option) {
+            axios.post(`http://localhost:5000/remove_user/${id}`)
+            .then(response => {
+            console.log(response.data.message);
+            setUsers(users.filter(user => user.id !== id));
+            }).catch(error => console.error('Error al eliminar usuario:', error));
         }
     };
 
