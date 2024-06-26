@@ -18,6 +18,22 @@ import {
 } from 'mdb-react-ui-kit';
 
 
+const uploadProfilePic = async (imageFile) => {
+    const formData = new FormData();
+    formData.append('id', sessionStorage.getItem('id'))
+    formData.append('file', imageFile);
+    try {
+        const response = await fetch('http://localhost/change_profile_pic', {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.error('Error al subir la imagen:', error);
+    }
+};
+
 function InfoProfileDashboard() {
     return (
         <>
@@ -50,8 +66,16 @@ function InfoProfileDashboard() {
                                 {/*<p className="text-muted mb-1">Full Stack Developer</p>
                                 <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>*/}
                                 <div className="d-flex justify-content-center mb-2">
-                                {/*<MDBBtn>Follow</MDBBtn>
-                                <MDBBtn outline className="ms-1">Message</MDBBtn>*/}
+                                {/*<MDBBtn>
+                                    Cambiar foto de perfil
+                                </MDBBtn>*/}
+                                <div>
+                                    <label class="form-label">Cambiar foto de perfil</label>
+                                    <input type="file" class="form-control" onChange={uploadProfilePic}/> 
+                                </div> 
+                                
+                                
+                                {/*<MDBBtn outline className="ms-1">Message</MDBBtn>*/}
                                 </div>
                             </MDBCardBody>
                             </MDBCard>
