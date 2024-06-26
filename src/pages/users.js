@@ -79,7 +79,7 @@ function UsersPage() {
       };
 
     const handleDeleteUser = (id) => {
-        const option = window.confirm("Estás Seguro que deseas Eliminar el elemento " + id);
+        const option = window.confirm("¿Estás seguro de eliminar este usuario?");
         if (option) {
             axios.post(`http://localhost:5000/remove_user/${id}`)
             .then(response => {
