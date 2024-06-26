@@ -26,6 +26,7 @@ const AuthUserForm = () => {
           sessionStorage.setItem('name', data.user.name);
           sessionStorage.setItem('email', data.user.email);
           sessionStorage.setItem('role', data.user.role);
+          sessionStorage.setItem('pic', data.user.profile_pic)
           
           console.log('Sesion de: ', username)
           //setUsername('')
