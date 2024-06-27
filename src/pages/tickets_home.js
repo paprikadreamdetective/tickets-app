@@ -14,17 +14,17 @@ import {
 
 import './tickets_home.css'
 import axios from "axios";
-const initialData = [
+/*const initialData = [
     { id: 1, nombre: "Juan Pérez", email: "juan.perez@example.com", noTicket: "001", asunto: "Problema de acceso", area: "Soporte Técnico", estado: "Abierto" },
     { id: 2, nombre: "María Gómez", email: "maria.gomez@example.com", noTicket: "002", asunto: "Consulta de facturación", area: "Finanzas", estado: "Cerrado" },
     { id: 3, nombre: "Carlos Ruiz", email: "carlos.ruiz@example.com", noTicket: "003", asunto: "Error en el sistema", area: "Desarrollo", estado: "En progreso" },
     { id: 4, nombre: "Ana López", email: "ana.lopez@example.com", noTicket: "004", asunto: "Solicitud de soporte", area: "Atención al Cliente", estado: "Abierto" },
     { id: 5, nombre: "Luis Fernández", email: "luis.fernandez@example.com", noTicket: "005", asunto: "Cambio de contraseña", area: "Soporte Técnico", estado: "Cerrado" },
     { id: 6, nombre: "Laura Martínez", email: "laura.martinez@example.com", noTicket: "006", asunto: "Actualización de datos", area: "Recursos Humanos", estado: "En progreso" },
-  ];
+  ];*/
 
 const Tickets = () => {
-  const [data, setData] = useState(initialData);
+  //const [data, setData] = useState(initialData);
   const [modalActualizar, setModalActualizar] = useState(false);
   const [modalInsertar, setModalInsertar] = useState(false);
   
@@ -36,7 +36,7 @@ const Tickets = () => {
   });
 
   const mostrarModalActualizar = (dato) => {
-    setForm(dato);
+    //setForm(dato);
     setModalActualizar(true);
   };
 
@@ -51,7 +51,7 @@ const Tickets = () => {
   const cerrarModalInsertar = () => {
     setModalInsertar(false);
   };
-
+  /*
   const editar = (dato) => {
     const updatedData = data.map((registro) =>
       registro.id === dato.id ? dato : registro
@@ -66,7 +66,7 @@ const Tickets = () => {
       const updatedData = data.filter((registro) => registro.id !== dato.id);
       setData(updatedData);
     }
-  };
+  };*/
   /*
   const insertar = () => {
     const valorNuevo = { ...form, id: data.length + 1 };
@@ -160,35 +160,46 @@ const Tickets = () => {
           transition: { duration: 3.5 },
       }}
     >
-    <br />
+    {/*<br />
         <Button color="success" onClick={mostrarModalInsertar}>Crear Ticket</Button>
         <br />
-        <br />
+        <br />*/}
+        <Container>
+            <h3>Tickets</h3>
+        </Container>
+        <Container>
+            <Button color="warning"  onClick={mostrarModalInsertar}>
+                Crear Ticket
+            </Button>
+        </Container>
       <Container fluid className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="table-container">
         <Table responsive hover className="table-responsive">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Email</th>
               <th>No°Ticket</th>
               <th>Asunto</th>
+              <th>Descripcion</th>
+              <th>Fecha</th>
+              <th>Categoria</th>
+              <th>Usuario</th>
               <th>Area</th>
-              <th>Estado</th>
+              
             </tr>
           </thead>
 
           <tbody>
-            {data.map((ticket) => (
+            {tickets.map((ticket) => (
               <tr key={ticket.id}>
                 <td>{ticket.id_ticket}</td>
                 <td>{ticket.asunto_ticket}</td>
                 <td>{ticket.descripcion_ticket}</td>
-                <td>{ticket.fecha_creacion}</td>
+                <td>{ticket.fecha_creacion_ticket}</td>
                 <td>{ticket.categoria_ticket}</td>
                 <td>{ticket.nombre_usuario}</td>
-                <td>{ticket.estado_actual}</td>
+                <td>{ticket.nombre_area}</td>
+                {/*<td>{ticket.nombre_usuario}</td>
+                <td>{ticket.estado_actual}</td>*/}
                 <td>
                   <Button color="primary" onClick={() => mostrarModalActualizar()}>
                     Editar
@@ -239,7 +250,7 @@ const Tickets = () => {
         </ModalBody>
 
         <ModalFooter>
-          <Button color="primary" onClick={() => editar(form)}>Editar</Button>
+          <Button color="primary" >Editar</Button>
           <Button color="danger" onClick={cerrarModalActualizar}>Cancelar</Button>
         </ModalFooter>
       </Modal>
