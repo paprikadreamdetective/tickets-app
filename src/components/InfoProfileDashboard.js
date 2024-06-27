@@ -19,13 +19,13 @@ import {
 } from 'mdb-react-ui-kit';
 
 import React, { useState } from 'react';
-
+import UserPicDefault from '../pics/user_default.jpg';
 
 function InfoProfileDashboard() {
     
 const [userId, setUserId] = useState('');
 const [selectedFile, setSelectedFile] = useState(null);
-
+const profilePic = sessionStorage.getItem('profile_pic')
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
         setUserId(sessionStorage.getItem('id'))
@@ -73,7 +73,7 @@ const [selectedFile, setSelectedFile] = useState(null);
                             <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                src={`data:image/jpeg;base64,${sessionStorage.getItem('profile_pic')}`}
+                                src={profilePic !== 'null' ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
                                 alt="avatar"
                                 className="rounded-circle"
                                 style={{ width: '200px' }}

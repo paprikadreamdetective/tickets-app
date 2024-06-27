@@ -8,7 +8,8 @@ import {
   MDBNavbarLink,
   MDBIcon,
   MDBCollapse,
-  MDBBtn
+  MDBBtn,
+  MDBCardImage
 } from 'mdb-react-ui-kit';
 
 import {
@@ -38,34 +39,57 @@ import {
   } from "reactstrap";
   import 'mdb-react-ui-kit/dist/css/mdb.min.css';
   import '@fortawesome/fontawesome-free/css/all.min.css';
-  
-function TopbarDashboard() {
-  const [openNavExternal, setOpenNavExternal] = useState(false);
+  import UserPicDefault from '../pics/user_default.jpg'
 
-  return (
-    <>
-      <MDBCollapse open={openNavExternal}>
-        <div className='bg-dark p-4'>
-          <h5 className='text-white h3'>Collapsed content</h5>
-          <span className='text-muted'>Toggleable via the navbar brand.</span>
-        </div>
-      </MDBCollapse>
-      <MDBNavbar dark bgColor='dark'>
-        <Container >
-            <MDBNavbarToggler
-                type='button'
-                data-target='#navbarToggleExternalContent'
-                aria-controls='navbarToggleExternalContent'
-                aria-expanded='false'
-                aria-label='Toggle navigation'
-                onClick={() => setOpenNavExternal(!openNavExternal)}>
-                <MDBIcon icon="bars" fas>
-                </MDBIcon>
-            </MDBNavbarToggler>
-            <MDBBtn color="primary"> Logout </MDBBtn>
-        </Container>
-      </MDBNavbar>
-    </>
-  );
+import { useNavigate } from 'react-router-dom';
+
+function TopbarDashboard() {
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        navigate('/');
+    };
+
+    const [openNavExternal, setOpenNavExternal] = useState(false);
+    const navigate = useNavigate()
+    const profilePic = sessionStorage.getItem('profile_pic')
+
+    return (
+        <>
+        <MDBCollapse open={openNavExternal}>
+            <div className='bg-dark p-4'>
+            <h5 className='text-white h3'>Collapsed content</h5>
+            <span className='text-muted'>Toggleable via the navbar brand.</span>
+            </div>
+        </MDBCollapse>
+        <MDBNavbar dark bgColor='dark'>
+            <Container >
+                <MDBNavbarToggler
+                    type='button'
+                    data-target='#navbarToggleExternalContent'
+                    aria-controls='navbarToggleExternalContent'
+                    aria-expanded='false'
+                    aria-label='Toggle navigation'
+                    onClick={() => setOpenNavExternal(!openNavExternal)}>
+                    <MDBIcon icon="bars" fas>
+                    </MDBIcon>
+                </MDBNavbarToggler>
+                <div>
+                    <MDBCardImage
+                            style={{ width: '50px' }}
+                            className="rounded-circle"
+                            src={profilePic !== 'null' ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
+                            alt='Generic placeholder image'
+                            fluid >
+                    </MDBCardImage>
+                    {' '}
+                    <MDBBtn color="primary" onClick={handleLogout}> 
+                        Cerrar Sesión 
+                    </MDBBtn>
+                </div>
+            </Container>
+        </MDBNavbar>
+        </>
+    );
 }
 export default TopbarDashboard;
