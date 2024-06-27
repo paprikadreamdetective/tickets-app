@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   MDBCol,
   MDBContainer,
@@ -14,51 +14,66 @@ import {
   MDBProgressBar,
   MDBIcon,
   MDBListGroup,
-  MDBListGroupItem
+  MDBListGroupItem,
+  MDBFile
 } from 'mdb-react-ui-kit';
 
+import React, { useState } from 'react';
 
-const uploadProfilePic = async (imageFile) => {
-    const formData = new FormData();
-    formData.append('id', sessionStorage.getItem('id'))
-    formData.append('file', imageFile);
-    try {
-        const response = await fetch('http://localhost/change_profile_pic', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error('Error al subir la imagen:', error);
-    }
-};
 
 function InfoProfileDashboard() {
+    
+const [userId, setUserId] = useState('');
+const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setUserId(sessionStorage.getItem('id'))
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!userId || !selectedFile) {
+            alert('Por favor selecciona un archivo');
+            return;
+        }
+        console.log(userId)
+        console.log(selectedFile)
+        const formData = new FormData();
+        formData.append('id', userId);
+        formData.append('file', selectedFile);
+
+        try {
+            const response = await fetch('http://localhost:5000/change_profile_pic', {
+                method: 'POST',
+                body: formData
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+            }
+
+            const result = await response.json();
+            console.log(result);
+            alert('Imagen subida correctamente.');
+        } catch (error) {
+            console.error('Error al subir la imagen:', error);
+            // Aquí podrías manejar el error mostrando un mensaje al usuario, por ejemplo
+        }
+    };
+
+  
     return (
         <>
             <section style={{ backgroundColor: '#eee' }}>
                 <MDBContainer className="py-9">
-                    {/*<MDBRow>
-                    <MDBCol>
-                        <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                        <MDBBreadcrumbItem>
-                            <a href='#'>Home</a>7
-                        </MDBBreadcrumbItem>
-                        <MDBBreadcrumbItem>
-                            <a href="#">User</a>
-                        </MDBBreadcrumbItem>
-                        <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-                        </MDBBreadcrumb>
-                    </MDBCol>
-                    </MDBRow>*/}
-
                     <MDBRow>
                         <MDBCol lg="4">
                             <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                src={`data:image/jpeg;base64,${sessionStorage.getItem('profile_pic')}`}
                                 alt="avatar"
                                 className="rounded-circle"
                                 style={{ width: '200px' }}
@@ -69,11 +84,26 @@ function InfoProfileDashboard() {
                                 {/*<MDBBtn>
                                     Cambiar foto de perfil
                                 </MDBBtn>*/}
-                                <div>
+                                {/*<div>
                                     <label class="form-label">Cambiar foto de perfil</label>
                                     <input type="file" class="form-control" onChange={uploadProfilePic}/> 
-                                </div> 
-                                
+                                </div>*/ }
+
+            <form onSubmit={handleSubmit}>
+                
+                <div>
+                    <label class="form-label" htmlFor="file">Seleccionar Imagen:</label>
+                    <input
+                        class="form-control"
+                        type="file"
+                        id="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
+                </div>
+                <button type="submit">Subir Imagen</button>
+            </form>
+        
                                 
                                 {/*<MDBBtn outline className="ms-1">Message</MDBBtn>*/}
                                 </div>

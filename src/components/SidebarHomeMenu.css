@@ -23,9 +23,9 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 .sidebar {
-  min-width: 250px;
-  max-width: 250px;
-  background: #7386d5;
+  /*min-width: 250px;*/
+  /*max-width: 1050px;*/
+  background: #000000;
   color: #fff;
   margin-left: -250px;
   transition: all 0.5s;
@@ -37,7 +37,7 @@ a:focus {
 }
 
 .sidebar-header {
-  background: #6d7fcc;
+  background: #000000;
 }
 
 .sidebar-header h3 {
@@ -90,7 +90,7 @@ li a.dropdown-toggle::after {
 }
 
 .side-menu::-webkit-scrollbar-thumb {
-  background: #5466b3;
+  background: #4c5a99;
   border-radius: 3px;
 }
 
@@ -136,7 +136,7 @@ li a.dropdown-toggle::after {
 
 /* NavStyles.css */
 .custom-nav {
-  background-color: #6d7fcc;
+  background-color: #000000;
   padding: 10px;
 }
 
@@ -146,7 +146,7 @@ li a.dropdown-toggle::after {
 }
 
 .custom-nav .nav-link:hover {
-  color: #6d7fcc;
+  color: #000000;
 }
 
 

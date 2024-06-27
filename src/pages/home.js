@@ -2,12 +2,12 @@ import SidebarHomeMenu from "../components/SidebarHomeMenu";
 import Content from "../components/ContentTopbar";
 import Tickets from "./tickets_home";
 import Topbar from "../components/TopbarHome";
-
+import TopbarDashboard from "../components/TopbarDashboard";
 
 import { useEffect } from "react";
 import { useState } from "react";
 import { Outlet } from 'react-router-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion';
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,7 +19,7 @@ function Home() {
     const [collapsed, setCollapsed] = useState(false);
     const [image, setImage] = useState(false);
     const [toggled, setToggled] = useState(false);
-
+    const navigate = useNavigate()
     const handleCollapsedChange = () => {
         setCollapsed(!collapsed);
     };
@@ -39,6 +39,7 @@ function Home() {
         (async () => {
           try {
             const resp = await axios.get("http://localhost:5000/@me");
+            navigate('dashboard')
             //setUser(resp.data);
           } catch (error) {
             console.log("Not authenticated");
@@ -47,7 +48,9 @@ function Home() {
     }, []);
 
     return (
-            
+        <>
+        
+        {/*<TopbarDashboard></TopbarDashboard>*/}
             <motion.div 
                 initial={{
                     opacity: 0.7,
@@ -60,9 +63,13 @@ function Home() {
                     opacity: 0.7,
                     transition: { duration: 3.5 },
                 }}
+                
                 className="App wrapper">
+                    
                     <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+                    
                     <div className="content">
+        <TopbarDashboard></TopbarDashboard>
                     
             
             
@@ -73,6 +80,7 @@ function Home() {
                 <Outlet />
             </div>
             </motion.div>
+            </>
        
     );
 }

@@ -62,7 +62,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <TopbarDashboard/>
+            
             <InfoProfileDashboard/>
         </>
     );

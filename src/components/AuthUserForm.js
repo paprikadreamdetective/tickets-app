@@ -26,6 +26,7 @@ const AuthUserForm = () => {
           sessionStorage.setItem('name', data.user.name);
           sessionStorage.setItem('email', data.user.email);
           sessionStorage.setItem('role', data.user.role);
+          sessionStorage.setItem('profile_pic', data.user.profile_pic)
           
           console.log('Sesion de: ', username)
           //setUsername('')
@@ -43,7 +44,7 @@ const AuthUserForm = () => {
         }
       } catch (error) {
         setMessage('Error al procesar la solicitud');
-        window.alert("Alerta: " + message);
+        window.alert('Error al procesar la solicitud');
       }
     // Redirigir al componente Home después de iniciar sesión
     };

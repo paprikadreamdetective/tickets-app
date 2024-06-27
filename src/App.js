@@ -39,7 +39,7 @@ function App(){
               <Route path="home" element={<Home />}>
                 <Route path="tickets_home" element={<Tickets />} />
                 <Route path="reports" element={<ReporteTabla data={data} />} />
-                <Route path="dashboard" element={<Dashboard/>}/>
+                <Route index element={<Dashboard/>}/>
                 <Route path="users" element={<UsersPage/>}/>
               </Route>
               <Route path="/impostor" element={<SignInImpostor/>}/>

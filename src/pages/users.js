@@ -55,7 +55,7 @@ function UsersPage() {
           apellido_paterno: apellidoP,
           apellido_materno: apellidoM,
           correo_usuario: correoUsuario,
-          password_usuario: correoUsuario,
+          password_usuario: passwordUsuario,
           rol_usuario: rolUsuario,
           id_area: area
         };
