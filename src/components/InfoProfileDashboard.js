@@ -63,7 +63,7 @@ const profilePic = sessionStorage.getItem('profile_pic')
         }
     };
 
-  
+   
     return (
         <>
             <section style={{ backgroundColor: '#eee' }}>

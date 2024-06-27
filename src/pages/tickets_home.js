@@ -14,14 +14,7 @@ import {
 
 import './tickets_home.css'
 import axios from "axios";
-/*const initialData = [
-    { id: 1, nombre: "Juan Pérez", email: "juan.perez@example.com", noTicket: "001", asunto: "Problema de acceso", area: "Soporte Técnico", estado: "Abierto" },
-    { id: 2, nombre: "María Gómez", email: "maria.gomez@example.com", noTicket: "002", asunto: "Consulta de facturación", area: "Finanzas", estado: "Cerrado" },
-    { id: 3, nombre: "Carlos Ruiz", email: "carlos.ruiz@example.com", noTicket: "003", asunto: "Error en el sistema", area: "Desarrollo", estado: "En progreso" },
-    { id: 4, nombre: "Ana López", email: "ana.lopez@example.com", noTicket: "004", asunto: "Solicitud de soporte", area: "Atención al Cliente", estado: "Abierto" },
-    { id: 5, nombre: "Luis Fernández", email: "luis.fernandez@example.com", noTicket: "005", asunto: "Cambio de contraseña", area: "Soporte Técnico", estado: "Cerrado" },
-    { id: 6, nombre: "Laura Martínez", email: "laura.martinez@example.com", noTicket: "006", asunto: "Actualización de datos", area: "Recursos Humanos", estado: "En progreso" },
-  ];*/
+
 
 const Tickets = () => {
   //const [data, setData] = useState(initialData);
@@ -51,28 +44,7 @@ const Tickets = () => {
   const cerrarModalInsertar = () => {
     setModalInsertar(false);
   };
-  /*
-  const editar = (dato) => {
-    const updatedData = data.map((registro) =>
-      registro.id === dato.id ? dato : registro
-    );
-    setData(updatedData);
-    setModalActualizar(false);
-  };
-
-  const eliminar = (dato) => {
-    const opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento " + dato.id);
-    if (opcion) {
-      const updatedData = data.filter((registro) => registro.id !== dato.id);
-      setData(updatedData);
-    }
-  };*/
-  /*
-  const insertar = () => {
-    const valorNuevo = { ...form, id: data.length + 1 };
-    setData([...data, valorNuevo]);
-    setModalInsertar(false);
-  };*/
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -106,7 +78,7 @@ const Tickets = () => {
         descripcion_ticket: descrTicket,
         fecha_creacion: fechaCreacion,
         categoria_ticket: categoriaTicket,
-        id_usuario: idUsuario,
+        id_usuario: sessionStorage.getItem('id'),
         id_estado: estadoTicket
       };
   
@@ -135,6 +107,10 @@ const Tickets = () => {
           .then(response => {
           console.log(response.data.message);
           setTickets(tickets.filter(ticket => ticket.id !== id));
+
+          if (response.data.status_code == 200) {
+            window.confirm("Ticket eliminado");
+          }
           }).catch(error => console.error('Error al eliminar usuario:', error));
       }
   };
@@ -144,6 +120,18 @@ const Tickets = () => {
           .then(response => response.json())
           .then(data => setTickets(data))
           .catch(error => console.error('Error fetching users:', error));
+    }, []);
+
+    useEffect(() => {
+      const today = new Date();
+
+  // Formatear la fecha
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+      setFechaCreacion(formattedDate);
+      console.log(fechaCreacion);
     }, []);
 
   return (
@@ -278,7 +266,7 @@ const Tickets = () => {
           </FormGroup>
 
           <FormGroup>
-            <label>Email:</label>
+            <label>Descripcion:</label>
             <input
               className="form-control"
               name="anime"
@@ -288,8 +276,8 @@ const Tickets = () => {
             />
           </FormGroup>
 
-          <FormGroup>
-            <label>Asunto:</label>
+          {/*<FormGroup>
+            <label>Fecha:</label>
             <input
               className="form-control"
               name="anime"
@@ -297,10 +285,10 @@ const Tickets = () => {
               value={fechaCreacion}
               onChange={(e) => setFechaCreacion(e.target.value)}
             />
-          </FormGroup>
+          </FormGroup>*/}
 
           <FormGroup>
-            <label>Descripcion:</label>
+            <label>Categoria:</label>
             <input
               className="form-control"
               name="anime"
@@ -311,11 +299,11 @@ const Tickets = () => {
           </FormGroup>
 
           <FormGroup>
-            <label>Area:</label>
+            <label>Estado:</label>
             <input
               className="form-control"
               name="anime"
-              type="text"
+              type="numeric"
               value={estadoTicket}
               onChange={(e) => setEstadoTicket(e.target.value)}
             />
