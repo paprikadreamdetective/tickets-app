@@ -1,4 +1,23 @@
 import React, { useState, useEffect } from 'react';
+
+import {
+    MDBCol,
+    MDBContainer,
+    MDBRow,
+    MDBCard,
+    MDBCardText,
+    MDBCardBody,
+    MDBCardImage,
+    MDBBtn,
+    MDBBreadcrumb,
+    MDBBreadcrumbItem,
+    MDBProgress,
+    MDBProgressBar,
+    MDBIcon,
+    MDBListGroup,
+    MDBListGroupItem,
+    MDBFile
+  } from 'mdb-react-ui-kit';
 import {
     Table,
     Button,
@@ -10,6 +29,7 @@ import {
     ModalFooter,
   } from "reactstrap";
 import axios from 'axios';
+import UserPicDefault from '../pics/user_default.jpg'
 import './users.css';
 
 function UsersPage() {
@@ -111,6 +131,7 @@ function UsersPage() {
                 <Table striped responsive hover className="users-table-responsive">
                 <thead className='users-table-thead'>
                     <tr>
+                    
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido Paterno</th>
@@ -123,6 +144,7 @@ function UsersPage() {
                 <tbody>
                     {users.map((user) => (
                     <tr key={user.id}>
+                        
                         <td>{user.id_usuario}</td>
                         <td>{user.nombre_usuario}</td>
                         <td>{user.apellido_paterno}</td>

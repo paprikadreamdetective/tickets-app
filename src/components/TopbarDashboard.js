@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MDBNavbar,
   MDBContainer,
@@ -26,7 +26,7 @@ import {
     faChartLine,
     faBars
   } from "@fortawesome/free-solid-svg-icons";
-
+import axios from 'axios';
   import {
     Table,
     Button,
@@ -52,8 +52,18 @@ function TopbarDashboard() {
 
     const [openNavExternal, setOpenNavExternal] = useState(false);
     const navigate = useNavigate()
-    const profilePic = sessionStorage.getItem('profile_pic')
-
+    const [profilePic , setProfilePic] = useState(null);
+    useEffect(() => {
+        axios.post(`http://localhost:5000/get_profile_pic/${sessionStorage.getItem('id')}`)  
+            .then(response => {
+                
+                setProfilePic(response.data.user.profile_pic);
+                if (response.data.status_code == 200) {
+                    console.log("Foto de perfil cargada");
+                }
+            })
+            .catch(error => console.error('Error fetching users:', error));
+      }, []);
     return (
         <>
         <MDBCollapse open={openNavExternal}>
