@@ -28,19 +28,21 @@ const AuthUserForm = () => {
           sessionStorage.setItem('role', data.user.role);
           sessionStorage.setItem('profile_pic', data.user.profile_pic)
           
-          console.log('Sesion de: ', username)
+          console.log('Sesion de: ', username);
+          console.log('Rol: ', data.user.role);
           //setUsername('')
           setPassword('')
           setMessage(data.message);
-          window.alert("Usuario: " + sessionStorage.getItem('username') + " Autenticado con exito")
+          window.alert("(" + sessionStorage.getItem('role') + ")" + " Usuario: " + sessionStorage.getItem('name') + " Autenticado con exito")
   
-          
-          navigate("/home");
+          if ("Admin" == sessionStorage.getItem('role')) {
+            navigate("/home");
+          } else if ("Usuario" == sessionStorage.getItem('role')) {
+            navigate("/home_users");
+          }
           //history.push('/home');
         } else {
           setMessage(data.message);
-          
-          
         }
       } catch (error) {
         setMessage('Error al procesar la solicitud');

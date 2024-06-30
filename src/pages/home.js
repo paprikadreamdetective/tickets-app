@@ -87,28 +87,3 @@ function Home() {
 
 export default Home;
 
-
-/*<div className="App wrapper">
-            
-                <div style={{ display: 'flex' }}>
-                <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen}>
-                    <div style={{ marginLeft: '250px', padding: '20px', width: '100%' }}>
-                    
-                    </div>
-                    </SidebarHomeMenu>
-                </div>
-        
-            
-            <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
-        </div>*/
-/*
-        <div className="App wrapper">
-        <div style={{ display: 'flex' }}>
-            <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen}>
-            <div style={{ marginLeft: sidebarIsOpen ? '250px' : '0', padding: '20px', width: '100%' }}>
-                <Outlet />
-            </div>
-            </SidebarHomeMenu>
-        </div>
-        <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
-    </div>*/

@@ -160,10 +160,10 @@ const Tickets = () => {
                 Crear Ticket
             </Button>
         </Container>
-      <Container fluid className="d-flex justify-content-center align-items-center min-vh-100">
-        <div className="table-container">
-        <Table responsive hover className="table-responsive">
-          <thead>
+      <Container className="d-flex justify-content-center align-items-center min-vh-10">
+        <div className="tickets-table-container">
+        <Table striped responsive hover className="tickets-table-responsive">
+          <thead className="tickets-table-thead">
             <tr>
               <th>No°Ticket</th>
               <th>Asunto</th>
@@ -172,7 +172,6 @@ const Tickets = () => {
               <th>Categoria</th>
               <th>Usuario</th>
               <th>Area</th>
-              
             </tr>
           </thead>
 

@@ -35,7 +35,8 @@ import './users.css';
 function UsersPage() {
     const [users, setUsers] = useState([]);
     const [modalInsertar, setModalInsertar] = useState(false);
-    
+    const [modalActualizar, setModalActualizar] = useState(false);
+
     const [idUsuario, setIdUsuario] = useState('');
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [apellidoP, setApellidoP] = useState('');
@@ -45,24 +46,20 @@ function UsersPage() {
     const [rolUsuario, setRolUsuario] = useState('');
     const [area, setArea] = useState();
     
-    /*const [form, setForm] = useState({
-        id_usuario: "",
-        nombre_usuario: "",
-        apellido_paterno: "",
-        apellido_materno: "",
-        correo_usuario: "",
-        password_usuario: "",
-        rol_usuario: "",
-        id_area: 0,
-        id_equipo: 0,
-    });*/
-
     const mostrarModalInsertar = () => {
         setModalInsertar(true);
     };
     
     const cerrarModalInsertar = () => {
         setModalInsertar(false);
+    };
+
+    const mostrarModalActualizar = () => {
+        setModalActualizar(true);
+    };
+
+    const cerrarModalActualizar = () => {
+        setModalActualizar(false);
     };
 
    
@@ -90,13 +87,18 @@ function UsersPage() {
             body: JSON.stringify(data)
           });
     
-          const responseData = await response.json();
-          console.log('Respuesta del servidor:', responseData);
-          // Manejar la respuesta del servidor como sea necesario
+            const responseData = await response.json();
+            console.log('Respuesta del servidor:', responseData);
+            // Manejar la respuesta del servidor como sea necesario
         } catch (error) {
-          console.error('Error al enviar los datos:', error);
+            console.error('Error al enviar los datos:', error);
         }
-      };
+    };
+    
+    const handelActualizarUser = async (e) => {
+
+    };
+
 
     const handleDeleteUser = (id) => {
         const option = window.confirm("¿Estás seguro de eliminar este usuario?");
@@ -131,7 +133,6 @@ function UsersPage() {
                 <Table striped responsive hover className="users-table-responsive">
                 <thead className='users-table-thead'>
                     <tr>
-                    
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido Paterno</th>
@@ -151,6 +152,7 @@ function UsersPage() {
                         <td>{user.apellido_materno}</td>
                         <td>{user.correo_usuario}</td>
                         <td>{user.nombre_area}</td>
+
                         <td>
                         <Button color="primary" >
                             Editar

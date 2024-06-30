@@ -53,6 +53,7 @@ function TopbarDashboard() {
     const [openNavExternal, setOpenNavExternal] = useState(false);
     const navigate = useNavigate()
     const [profilePic , setProfilePic] = useState(null);
+
     useEffect(() => {
         axios.post(`http://localhost:5000/get_profile_pic/${sessionStorage.getItem('id')}`)  
             .then(response => {
@@ -88,7 +89,7 @@ function TopbarDashboard() {
                     <MDBCardImage
                             style={{ width: '50px' }}
                             className="rounded-circle"
-                            src={profilePic !== 'null' ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
+                            src={profilePic !== null ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
                             alt='Generic placeholder image'
                             fluid >
                     </MDBCardImage>
