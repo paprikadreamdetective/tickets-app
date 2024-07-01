@@ -125,7 +125,7 @@ function UsersPage() {
     
     const handleUpdateUser = async (e) => {
         e.preventDefault();
-        if (selectedUser.password_usuario !== selectedUser.confirmar_contraseña) {
+        if (selectedUser.nueva_contraseña !== selectedUser.confirmar_contraseña) {
             alert('Las contraseñas no coinciden');
             return;
         }
@@ -136,7 +136,7 @@ function UsersPage() {
                 apellido_paterno: selectedUser.apellido_paterno,
                 apellido_materno: selectedUser.apellido_materno,
                 correo_usuario: selectedUser.correo_usuario,
-                password_usuario: selectedUser.password_usuario,
+                password_usuario: selectedUser.confirmar_contraseña,
                 rol_usuario: selectedUser.rol_usuario,
                 id_area: selectedUser.id_area
               };
@@ -147,11 +147,14 @@ function UsersPage() {
                 },
                 body: JSON.stringify(data)
                 });
-            if (response.result) {
+            const responseData = await response.json();
+            if (responseData.success) {
+                window.confirm(responseData.message);
                 cerrarModalEditar();
                 // Refresh the users list or update the specific user in the state
             } else {
-                alert(response.message);
+                alert(responseData.message);
+                cerrarModalEditar();
             }
         } catch (error) {
             console.error("There was an error updating the user!", error);
@@ -447,7 +450,7 @@ function UsersPage() {
                                 value={selectedUser.id_area}
                                 onChange={(e) => setSelectedUser({ ...selectedUser, id_area: e.target.value })}
                             >
-                                <option value="">--Seleccione un área--</option>
+                                {/*<option value="">--Seleccione un área--</option>*/}
                                 {Object.entries(areas).map(([num, name]) => (
                                     <option key={num} value={num}>{name}</option>
                                 ))}
@@ -473,7 +476,7 @@ function UsersPage() {
                             <input
                                 className="form-control"
                                 type="password"
-                                value={selectedUser.confirmar_contraseña || ''}
+                                value={selectedUser.confirmar_contraseña}
                                 onChange={(e) => setSelectedUser({ ...selectedUser, confirmar_contraseña: e.target.value })}
                             />
                         </FormGroup>
@@ -483,10 +486,10 @@ function UsersPage() {
                             <label>Rol:</label>
                             <select
                                 className="form-control"
-                                value={selectedUser.rol}
-                                onChange={(e) => setSelectedUser({ ...selectedUser, rol: e.target.value })}
+                                value={selectedUser.rol_usuario}
+                                onChange={(e) => setSelectedUser({ ...selectedUser, rol_usuario: e.target.value })}
                             >
-                                <option value="">--Seleccione un rol--</option>
+                               
                                 <option value="Admin">Admin</option>
                                 <option value="Usuario">Usuario</option>
                             </select>
