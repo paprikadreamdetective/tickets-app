@@ -15,39 +15,37 @@ const AuthUserForm = () => {
     
     const handleLogin = async (e) => {
       e.preventDefault();
-    try {
-        const response = await axios.post('http://127.0.0.1:5000/login_user', {
-          email: username,
-          password: password,
-        });
-        const data = response.data;
-        if (data.success) {
-          sessionStorage.setItem('id', data.user.id)
-          sessionStorage.setItem('name', data.user.name);
-          sessionStorage.setItem('email', data.user.email);
-          sessionStorage.setItem('role', data.user.role);
-          sessionStorage.setItem('profile_pic', data.user.profile_pic)
-          
-          console.log('Sesion de: ', username);
-          console.log('Rol: ', data.user.role);
-          //setUsername('')
-          setPassword('')
-          setMessage(data.message);
-          window.alert("(" + sessionStorage.getItem('role') + ")" + " Usuario: " + sessionStorage.getItem('name') + " Autenticado con exito")
-  
-          if ("Admin" == sessionStorage.getItem('role')) {
-            navigate("/home");
-          } else if ("Usuario" == sessionStorage.getItem('role')) {
-            navigate("/home_users");
+      try {
+          const response = await axios.post('http://127.0.0.1:5000/login_user', {
+            email: username,
+            password: password,
+          });
+          const data = response.data;
+          if (data.success) {
+            sessionStorage.setItem('id', data.user.id)
+            sessionStorage.setItem('name', data.user.name);
+            sessionStorage.setItem('email', data.user.email);
+            sessionStorage.setItem('role', data.user.role);
+            sessionStorage.setItem('profile_pic', data.user.profile_pic)
+            
+            console.log('Sesion de: ', username);
+            console.log('Rol: ', data.user.role);
+            //setUsername('')
+            setPassword('')
+            setMessage(data.message);
+            window.alert("(" + sessionStorage.getItem('role') + ")" + " Usuario: " + sessionStorage.getItem('name') + " Autenticado con exito")
+            if ("Admin" == sessionStorage.getItem('role')) {
+              navigate("/home");
+            } else if ("Usuario" == sessionStorage.getItem('role')) {
+              navigate("/home_users");
+            }
+          } else {
+            setMessage(data.message);
           }
-          //history.push('/home');
-        } else {
-          setMessage(data.message);
+        } catch (error) {
+          setMessage('Error al procesar la solicitud');
+          window.alert('Error al procesar la solicitud');
         }
-      } catch (error) {
-        setMessage('Error al procesar la solicitud');
-        window.alert('Error al procesar la solicitud');
-      }
     // Redirigir al componente Home después de iniciar sesión
     };
 

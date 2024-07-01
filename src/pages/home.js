@@ -49,8 +49,6 @@ function Home() {
 
     return (
         <>
-        
-        {/*<TopbarDashboard></TopbarDashboard>*/}
             <motion.div 
                 initial={{
                     opacity: 0.7,
@@ -65,23 +63,13 @@ function Home() {
                 }}
                 
                 className="App wrapper">
-                    
                     <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
-                    
-                    <div className="content">
-        <TopbarDashboard></TopbarDashboard>
-                    
-            
-            
-            
-            {/*<Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />*/}
-            
-            
-                <Outlet />
-            </div>
+                        <div className="content">
+                            <TopbarDashboard></TopbarDashboard>        
+                            <Outlet />
+                        </div>
             </motion.div>
-            </>
-       
+        </>
     );
 }
 
