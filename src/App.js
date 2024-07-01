@@ -37,7 +37,6 @@ function App(){
   
 
   return (
-   
     <BrowserRouter>
       <LayoutGroup>
           <Routes>
