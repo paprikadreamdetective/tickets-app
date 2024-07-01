@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faUserEdit,  faTimes, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import {
     MDBCol,
     MDBContainer,
@@ -37,6 +38,11 @@ import UserPicDefault from '../pics/user_default.jpg'
 import './users.css';
 
 function UsersPage() {
+    const roles = {
+        admin: 'Admin',
+        usuario: 'Usuario'
+    };
+
     const areas = {
         1: 'Administracion',
         2: 'Comercio',
@@ -162,8 +168,8 @@ function UsersPage() {
                 <h3>Usuarios</h3>
             </Container>
             <Container>
-                <Button color="warning"  onClick={mostrarModalInsertar}>
-                    Añadir Usuario
+                <Button color="success"  onClick={mostrarModalInsertar}>
+                    <FontAwesomeIcon icon={faUserPlus} /> {" "} Añadir Usuario
                 </Button>
             </Container>
             <Container className="d-flex justify-content-center align-items-center min-vh-10">
@@ -193,9 +199,11 @@ function UsersPage() {
 
                                 <td>
                                 <Button color="primary" >
-                                    Editar
+                                    <FontAwesomeIcon icon={faUserEdit} /> {" "}Editar
                                 </Button>{" "}
-                                <Button color="danger" onClick={() => handleDeleteUser(user.id_usuario)} >Eliminar</Button>
+                                <Button color="danger" onClick={() => handleDeleteUser(user.id_usuario)} >
+                                    <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
+                                </Button>
                                 </td>
                             </tr>
                             ))}
@@ -208,6 +216,7 @@ function UsersPage() {
             <ModalHeader>
                 <div>
                     <h3>Nuevo Usuario</h3>
+                    
                 </div>
             </ModalHeader>
             <ModalBody>
@@ -295,13 +304,23 @@ function UsersPage() {
                     </Col>
                     <Col md={6}>
                         <FormGroup>
-                            <label>Rol usuario:</label>
-                            <input
+                            <label>Rol:</label>
+                            {/*<input
                                 className="form-control"
                                 type="text"
                                 value={rolUsuario}
                                 onChange={(e) => setRolUsuario(e.target.value)}
-                            />
+                            />*/}
+                            <select
+                                className="form-control"
+                                value={rolUsuario}
+                                onChange={(e) => setRolUsuario(e.target.value)}
+                            >
+                                <option value="">--Seleccione un rol--</option>
+                                {Object.entries(roles).map(([value, label]) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
+                            </select>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -314,7 +333,7 @@ function UsersPage() {
                                 value={area}
                                 onChange={(e) => setArea(e.target.value)}
                             >
-                                <option value="">Seleccione un área</option>
+                                <option value="">--Seleccione un área--</option>
                                 {Object.entries(areas).map(([num, name]) => (
                                     <option key={num} value={num}>{name}</option>
                                 ))}
@@ -324,8 +343,12 @@ function UsersPage() {
                 </Row>
             </ModalBody>
             <ModalFooter>
-                <Button color="primary" onClick={handleInsertUser}>Insertar</Button>
-                <Button className="btn btn-danger" onClick={cerrarModalInsertar}>Cancelar</Button>
+                <Button color="success" onClick={handleInsertUser}>
+                    <FontAwesomeIcon icon={faUserPlus} /> {" "} Añadir
+                </Button>
+                <Button className="btn btn-danger" onClick={cerrarModalInsertar}>
+                    <FontAwesomeIcon icon={faTimes} /> {" "} Cancelar
+                </Button>
             </ModalFooter>
         </Modal>
         </motion.div>
