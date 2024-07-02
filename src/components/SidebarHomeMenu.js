@@ -1,3 +1,5 @@
+import TopbarDashboard from "./TopbarDashboard";
+
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,16 +12,37 @@ import {
   faTicket,
   faGears,
   faDashboard,
-  faNewspaper,
+  faUserFriends,
   faChartLine,
-  faCircleExclamation
+  faCircleExclamation,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
+
+import {
+    MDBCol,
+    MDBContainer,
+    MDBRow,
+    MDBCard,
+    MDBCardText,
+    MDBCardBody,
+    MDBCardImage,
+    MDBBtn,
+    MDBBreadcrumb,
+    MDBBreadcrumbItem,
+    MDBProgress,
+    MDBProgressBar,
+    MDBIcon,
+    MDBListGroup,
+    MDBListGroupItem,
+    MDBFile
+  } from 'mdb-react-ui-kit';
+
 import { NavItem, NavLink, Nav } from "reactstrap";
 import classNames from "classnames";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import './SidebarHomeMenu.css'
-import Logo from '../pics/sima-logo-letters.png'
+import Logo from '../pics/4.png'
 function SidebarHomeMenu({ isOpen, toggle }) {
 
     const navigate = useNavigate()
@@ -31,18 +54,28 @@ function SidebarHomeMenu({ isOpen, toggle }) {
     };
 
     return (
+        <>
+        
         <div className={classNames("sidebar", { "is-open": isOpen })}>
+            
             <div className="sidebar-header">
+            
                 <span color="info" onClick={toggle} style={{ color: "#fff" }}>
                     &times;
                 </span>
-                <img src={Logo} width="200" height="150"/> 
+                {/*<img src={Logo} width="200" height="150"/> */}
+                <MDBCardImage
+                                src={Logo}
+                                alt="avatar"
+                                
+                                style={{ width: '180px' }}
+                                fluid />
             </div>
             <div className="side-menu">
                 <Nav vertical className="custom-nav">
                     <p>Menu</p>
                     <NavItem>
-                        <NavLink tag={Link} to={"dashboard"}>
+                        <NavLink tag={Link} to={"/home"}>
                             <FontAwesomeIcon icon={faDashboard} className="mr-1" />
                             {"              "} Dashboard
                         </NavLink>
@@ -55,9 +88,9 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/contact"}>
-                            <FontAwesomeIcon icon={faNewspaper} className="mr-2" />
-                            {"              "} Tipos de requerimientos
+                        <NavLink tag={Link} to={"chats"}>
+                            <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
+                            {"              "} Chats
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -85,7 +118,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"impostor"}>
+                        <NavLink tag={Link} to={"ticketsTab"}>
                             <FontAwesomeIcon icon={faGears} className="mr-2" />
                             {"              "} Configuracion
                         </NavLink>
@@ -96,7 +129,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
             </div>
             
         </div>
-        
+    </>
     );
 }
 export default SidebarHomeMenu;

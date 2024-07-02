@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {
   MDBCol,
   MDBContainer,
@@ -14,68 +14,116 @@ import {
   MDBProgressBar,
   MDBIcon,
   MDBListGroup,
-  MDBListGroupItem
+  MDBListGroupItem,
+  MDBFile
 } from 'mdb-react-ui-kit';
-
-
-const uploadProfilePic = async (imageFile) => {
-    const formData = new FormData();
-    formData.append('id', sessionStorage.getItem('id'))
-    formData.append('file', imageFile);
-    try {
-        const response = await fetch('http://localhost/change_profile_pic', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error('Error al subir la imagen:', error);
-    }
-};
-
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import UserPicDefault from '../pics/user_default.jpg';
+import {
+    Table,
+    Button,
+    Container,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    FormGroup,
+    ModalFooter,
+  } from "reactstrap";
 function InfoProfileDashboard() {
+    
+const [userId, setUserId] = useState('');
+const [selectedFile, setSelectedFile] = useState(null);
+const [profilePic, setProfilePic] = useState(null);
+//const profilePic = sessionStorage.getItem('profile_pic')
+    
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+        setUserId(sessionStorage.getItem('id'))
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!userId || !selectedFile) {
+            alert('Por favor selecciona un archivo');
+            return;
+        }
+        console.log(userId)
+        console.log(selectedFile)
+        const formData = new FormData();
+        formData.append('id', userId);
+        formData.append('file', selectedFile);
+
+        try {
+            const response = await fetch('http://localhost:5000/change_profile_pic', {
+                method: 'POST',
+                body: formData
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error);
+            }
+
+            const result = await response.json();
+            console.log(result);
+            alert('Imagen subida correctamente.');
+        } catch (error) {
+            console.error('Error al subir la imagen:', error);
+            // Aquí podrías manejar el error mostrando un mensaje al usuario, por ejemplo
+        }
+    };
+
+    useEffect(() => {
+        axios.post(`http://localhost:5000/get_profile_pic/${sessionStorage.getItem('id')}`)  
+            .then(response => {
+                
+                setProfilePic(response.data.user.profile_pic);
+                if (response.data.status_code == 200) {
+                    console.log("Foto de perfil cargada");
+                }
+            })
+            .catch(error => console.error('Error fetching users:', error));
+      }, []);
+    
+
+
     return (
         <>
             <section style={{ backgroundColor: '#eee' }}>
-                <MDBContainer className="py-9">
-                    {/*<MDBRow>
-                    <MDBCol>
-                        <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
-                        <MDBBreadcrumbItem>
-                            <a href='#'>Home</a>7
-                        </MDBBreadcrumbItem>
-                        <MDBBreadcrumbItem>
-                            <a href="#">User</a>
-                        </MDBBreadcrumbItem>
-                        <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
-                        </MDBBreadcrumb>
-                    </MDBCol>
-                    </MDBRow>*/}
-
+                <MDBContainer style={{ maxWidth: '1000px', padding: '50px', marginTop: '10px' }}>
+                
                     <MDBRow>
                         <MDBCol lg="4">
                             <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
+<<<<<<< HEAD
                                 src={sessionStorage.getItem('pic')}
+=======
+                                src={profilePic !== null ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
+>>>>>>> 624f60fc1300685e271082ac3c9fd6b57ffbe8b3
                                 alt="avatar"
                                 className="rounded-circle"
                                 style={{ width: '200px' }}
                                 fluid />
-                                {/*<p className="text-muted mb-1">Full Stack Developer</p>
-                                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>*/}
+                                
                                 <div className="d-flex justify-content-center mb-2">
-                                {/*<MDBBtn>
-                                    Cambiar foto de perfil
-                                </MDBBtn>*/}
-                                <div>
-                                    <label class="form-label">Cambiar foto de perfil</label>
-                                    <input type="file" class="form-control" onChange={uploadProfilePic}/> 
-                                </div> 
-                                
-                                
-                                {/*<MDBBtn outline className="ms-1">Message</MDBBtn>*/}
+                                    <form onSubmit={handleSubmit}>
+                                        
+                                        <div>
+                                            <label class="form-label" htmlFor="file">Foto de Perfil</label>
+                                            <input
+                                                class="form-control"
+                                                type="file"
+                                                id="file"
+                                                accept="image/*"
+                                                onChange={handleFileChange}
+                                            />
+                                            <br></br>
+                                        </div>
+                                        <MDBBtn outline className="ms-1" color='primary' type="submit">Cambiar foto de perfil</MDBBtn>
+                                    </form>
                                 </div>
                             </MDBCardBody>
                             </MDBCard>
@@ -116,6 +164,9 @@ function InfoProfileDashboard() {
                                     <MDBCardText>ID Usuario</MDBCardText>
                                 </MDBCol>
                                 <MDBCol sm="9">
+
+                                    <MDBCardText className="text-muted">{sessionStorage.getItem('username')}</MDBCardText>
+
                                     <MDBCardText className="text-muted">{sessionStorage.getItem('id')}</MDBCardText>
                                 </MDBCol>
                                 </MDBRow>
@@ -126,6 +177,7 @@ function InfoProfileDashboard() {
                                 </MDBCol>
                                 <MDBCol sm="9">
                                     <MDBCardText className="text-muted">{sessionStorage.getItem('name')}</MDBCardText>
+
                                 </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -226,6 +278,7 @@ function InfoProfileDashboard() {
                             </MDBRow>
                         </MDBCol>
                     </MDBRow>
+                
                 </MDBContainer>
             </section>
         </>

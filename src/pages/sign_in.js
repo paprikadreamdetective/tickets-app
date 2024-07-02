@@ -18,7 +18,7 @@ function SignIn() {
         navigate('/')
         //window.location.href = "/";
     };
-
+    /*
     useEffect(() => {
         (async () => {
           try {
@@ -28,6 +28,16 @@ function SignIn() {
             console.log("Not authenticated");
           }
         })();
+
+    }, []);*/
+
+    useEffect(() => {
+        const role = sessionStorage.getItem('role')
+        if (role === null) {
+            console.log("Not authenticated");
+        } else {
+            console.log("User Role " + role);
+        }
     }, []);
 
     return (
