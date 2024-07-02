@@ -12,7 +12,7 @@ import {
   faTicket,
   faGears,
   faDashboard,
-  faNewspaper,
+  faUserFriends,
   faChartLine,
   faCircleExclamation,
   faBars
@@ -88,9 +88,9 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/contact"}>
-                            <FontAwesomeIcon icon={faNewspaper} className="mr-2" />
-                            {"              "} Tipos de requerimientos
+                        <NavLink tag={Link} to={"chats"}>
+                            <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
+                            {"              "} Chats
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -118,7 +118,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"impostor"}>
+                        <NavLink tag={Link} to={"ticketsTab"}>
                             <FontAwesomeIcon icon={faGears} className="mr-2" />
                             {"              "} Configuracion
                         </NavLink>

@@ -69,3 +69,10 @@
 .pull-right {
     float: right;
 }
+
+.fixed-topbar {
+    height: 70px; /* Cambia esto al tamaño que prefieras */
+    display: flex;
+    align-items: center;
+  }
+  

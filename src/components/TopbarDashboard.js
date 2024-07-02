@@ -39,6 +39,7 @@ import axios from 'axios';
   } from "reactstrap";
   import 'mdb-react-ui-kit/dist/css/mdb.min.css';
   import '@fortawesome/fontawesome-free/css/all.min.css';
+  import './TopbarDashboard.css';
   import UserPicDefault from '../pics/user_default.jpg'
 
 import { useNavigate } from 'react-router-dom';
@@ -73,7 +74,7 @@ function TopbarDashboard() {
             <span className='text-muted'>Toggleable via the navbar brand.</span>
             </div>
         </MDBCollapse>
-        <MDBNavbar dark bgColor='dark'>
+        <MDBNavbar dark bgColor='dark' style={{ height: '70px', display: 'flex', alignItems: 'center' }}>
             <Container >
                 <MDBNavbarToggler
                     type='button'

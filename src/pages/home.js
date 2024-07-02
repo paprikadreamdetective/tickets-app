@@ -65,8 +65,12 @@ function Home() {
                 className="App wrapper">
                     <SidebarHomeMenu toggle={toggleSidebar} isOpen={sidebarIsOpen} />
                         <div className="content">
-                            <TopbarDashboard></TopbarDashboard>        
-                            <Outlet />
+                            <div >
+                                <TopbarDashboard/>
+                            </div>
+                            <div>
+                                <Outlet/>
+                            </div>
                         </div>
             </motion.div>
         </>

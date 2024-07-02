@@ -7,6 +7,8 @@ import Charts from './pages/dashboard';
 import SignInImpostor from './pages/sign_in_impostor';
 import Dashboard from './pages/best_dashboard';
 import UsersPage from './pages/users';
+import Chats from './pages/chats';
+import TicketsPane from './pages/tickets';
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -43,6 +45,8 @@ function App(){
             <Route path="/" element={<SignIn />}/>
                 <Route exact path="home" element={<Home />}>
                   <Route path="tickets_home" element={<Tickets />} />
+                  <Route path="ticketsTab" element={<TicketsPane />} />
+                  <Route path="chats" element={<Chats />} />
                   <Route path="reports" element={<ReporteTabla data={data} />} />
                   <Route index element={<Dashboard/>}/>
                   <Route path="users" element={<UsersPage/>}/>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit,  faTimes, faTicket, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { motion } from "framer-motion";
 import {
   Table,
@@ -156,8 +158,8 @@ const Tickets = () => {
             <h3>Tickets</h3>
         </Container>
         <Container>
-            <Button color="warning"  onClick={mostrarModalInsertar}>
-                Crear Ticket
+            <Button color="success"  onClick={mostrarModalInsertar}>
+              <FontAwesomeIcon icon={faPlusCircle} /> {" "} Nuevo Ticket
             </Button>
         </Container>
       <Container className="d-flex justify-content-center align-items-center min-vh-10">
