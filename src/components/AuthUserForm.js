@@ -15,34 +15,7 @@ const AuthUserForm = () => {
     
     const handleLogin = async (e) => {
       e.preventDefault();
-<<<<<<< HEAD
-    try {
-        const response = await axios.post('http://127.0.0.1:5000/login_user', {
-          email: username,
-          password: password,
-        });
-        const data = response.data;
-        if (data.success) {
-          sessionStorage.setItem('id', data.user.id)
-          sessionStorage.setItem('name', data.user.name);
-          sessionStorage.setItem('email', data.user.email);
-          sessionStorage.setItem('role', data.user.role);
-          sessionStorage.setItem('pic', data.user.profile_pic)
-          
-          console.log('Sesion de: ', username)
-          //setUsername('')
-          setPassword('')
-          setMessage(data.message);
-          window.alert("Usuario: " + sessionStorage.getItem('username') + " Autenticado con exito")
-  
-          
-          navigate("/home");
-          //history.push('/home');
-        } else {
-          setMessage(data.message);
-          
-          
-=======
+
       try {
           const response = await axios.post('http://127.0.0.1:5000/login_user', {
             email: username,
@@ -73,9 +46,8 @@ const AuthUserForm = () => {
         } catch (error) {
           setMessage('Error al procesar la solicitud');
           window.alert('Error al procesar la solicitud');
->>>>>>> 624f60fc1300685e271082ac3c9fd6b57ffbe8b3
         }
-    // Redirigir al componente Home después de iniciar sesión
+    
     };
 
     return (
