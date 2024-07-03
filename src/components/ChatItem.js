@@ -31,7 +31,8 @@ const ChatItem = (props) => {
       </div>
 
       <div >
-        
+        {/*<div className="avatar-img">*/}
+          {/*<img src={props.image} alt="#" />*/}
           <MDBCardImage
                             style={{ width: '50px' }}
                             className="rounded-circle"
