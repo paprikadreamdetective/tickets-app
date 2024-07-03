@@ -4,47 +4,48 @@ import ChatItem from "./ChatItem";
 import attachment from "../pics/attachment.png";
 import emoji from "../pics/emoji.png";
 import send from "../pics/send.png";
+import userDefault from '../pics/user_default.jpg';
 const ChatContent = () => {
   const chatItems = [
     {
       key: 1,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUUCKBsmGfRJkGgq3xR8owntnvtb1azeJPDw&usqp=CAU",
+        userDefault,
       type: "",
       msg: "Hi Henry!!"
     },
     {
       key: 2,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUUCKBsmGfRJkGgq3xR8owntnvtb1azeJPDw&usqp=CAU",
+      userDefault,
       type: "",
       msg: "How can I help you today?"
     },
     {
       key: 3,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
+      userDefault,
       type: "other",
       msg: "Hey Bill, nice to meet you!"
     },
     {
       key: 4,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
+      userDefault,
       type: "other",
       msg: "Hope you're doing fine."
     },
     {
       key: 5,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUUCKBsmGfRJkGgq3xR8owntnvtb1azeJPDw&usqp=CAU",
+      userDefault,
       type: "",
       msg: "I'm good thanks for asking."
     },
     {
       key: 6,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
+      userDefault,
       type: "other",
       msg:
         "I am interested to know more about your prices and services you offer"
@@ -52,7 +53,7 @@ const ChatContent = () => {
     {
       key: 7,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUUCKBsmGfRJkGgq3xR8owntnvtb1azeJPDw&usqp=CAU",
+      userDefault,
       type: "",
       msg:
         "Sure, please check below link to find more http://mazepixel.com/portfolio"
@@ -60,7 +61,7 @@ const ChatContent = () => {
     {
       key: 8,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
+      userDefault,
       type: "other",
       msg:
         "Awesome, will get in touch if there's anything unclear, Thanks for now!"
@@ -68,14 +69,14 @@ const ChatContent = () => {
     {
       key: 9,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
+      userDefault,
       type: "other",
       msg: "Have a great day!"
     },
     {
       key: 10,
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUUCKBsmGfRJkGgq3xR8owntnvtb1azeJPDw&usqp=CAU",
+      userDefault,
       type: "",
       msg: "Thanks buddy, you too as well"
     }

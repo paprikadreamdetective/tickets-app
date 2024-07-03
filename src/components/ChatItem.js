@@ -1,7 +1,22 @@
 import React from "react";
+import './ChatContent.css';
+
+import {
+    MDBNavbar,
+    MDBContainer,
+    MDBNavbarBrand,
+    MDBNavbarToggler,
+    MDBNavbarItem,
+    MDBNavbarLink,
+    MDBIcon,
+    MDBCollapse,
+    MDBBtn,
+    MDBCardImage
+  } from 'mdb-react-ui-kit';
 
 const ChatItem = (props) => {
   return (
+    <>
     <div
       style={{ animationDelay: `0.8s` }}
       className={`chat__item ${props.user ? props.user : ""}`}
@@ -15,13 +30,20 @@ const ChatItem = (props) => {
         </div>
       </div>
 
-      <div className="avatar">
-        <div className="avatar-img">
-          <img src={props.image} alt="#" />
-        </div>
+      <div >
+        
+          <MDBCardImage
+                            style={{ width: '50px' }}
+                            className="rounded-circle"
+                            src={props.image}
+                            alt='Generic placeholder image'
+                            fluid >
+                    </MDBCardImage>
+        {/*</div>*/}
         <span className={`isOnline ${"active"}`}></span>
       </div>
     </div>
+    </>
   );
 };
 export default ChatItem;
