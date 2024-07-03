@@ -90,7 +90,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                     <NavItem>
                         <NavLink tag={Link} to={"chats"}>
                             <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
-                            {"              "} Chats
+                            {"              "} QuickChat
                         </NavLink>
                     </NavItem>
                     <NavItem>

@@ -99,6 +99,10 @@ const [profilePic, setProfilePic] = useState(null);
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
 
+<<<<<<< HEAD
+=======
+                               
+>>>>>>> refs/remotes/origin/main
                                 src={profilePic !== null ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
 
                                 alt="avatar"
