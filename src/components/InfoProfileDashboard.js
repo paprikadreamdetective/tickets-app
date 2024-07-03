@@ -98,11 +98,10 @@ const [profilePic, setProfilePic] = useState(null);
                             <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-<<<<<<< HEAD
-                                src={sessionStorage.getItem('pic')}
-=======
+
+                               
                                 src={profilePic !== null ? `data:image/jpeg;base64,${profilePic}` : UserPicDefault}
->>>>>>> 624f60fc1300685e271082ac3c9fd6b57ffbe8b3
+
                                 alt="avatar"
                                 className="rounded-circle"
                                 style={{ width: '200px' }}
