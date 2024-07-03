@@ -8,10 +8,10 @@ const SendMessage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        axios.post('http://localhost:500/send_message', {
+        axios.post('http://localhost:5000/send_message', {
             sender_id: senderId,
             receiver_id: receiverId,
-            message
+            msg: message 
         })
         .then(response => {
             setMessage('');
@@ -21,15 +21,15 @@ const SendMessage = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form >
             <input 
                 type="text" 
                 value={message} 
-                onChange={(e) => setMessage(e.target.value)} 
+                onChange={(e) => setMessage(e.target.value)} chat-react
                 placeholder="Type a message" 
                 required 
             />
-            <button type="submit">Send</button>
+            <button type="submit" onClick={handleSubmit}>Send</button>
         </form>
     );
 };

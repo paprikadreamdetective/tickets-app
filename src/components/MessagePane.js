@@ -7,7 +7,7 @@ const MessagesPane = () => {
     const receiverId = 'MAD-CDM-100-001';
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/messages?sender_id=${senderId}&receiver_id=${receiverId}`)
+        axios.get(`http://localhost:5000/get_messages?sender_id=${senderId}&receiver_id=${receiverId}`)
             .then(response => setMessages(response.data))
             .catch(error => console.error(error));
     }, [senderId, receiverId]);
