@@ -15,12 +15,6 @@ const AuthUserForm = () => {
     
     const handleLogin = async (e) => {
       e.preventDefault();
-
-<<<<<<< HEAD
-=======
-    
-
->>>>>>> refs/remotes/origin/main
       try {
           const response = await axios.post('http://127.0.0.1:5000/login_user', {
             email: username,
@@ -51,10 +45,6 @@ const AuthUserForm = () => {
         } catch (error) {
           setMessage('Error al procesar la solicitud');
           window.alert('Error al procesar la solicitud');
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
         }
     
     };

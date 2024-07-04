@@ -4,7 +4,7 @@ import axios from 'axios';
 const MessagesPane = () => {
     const [messages, setMessages] = useState([]);
     const senderId = sessionStorage.getItem('id');
-    const receiverId = 'MAD-CDM-100-001';
+    const receiverId = '2';
     
     useEffect(() => {
         axios.get(`http://localhost:5000/get_messages?sender_id=${senderId}&receiver_id=${receiverId}`)

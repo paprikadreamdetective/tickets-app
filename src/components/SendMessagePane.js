@@ -4,7 +4,7 @@ import axios from 'axios';
 const SendMessage = () => {
     const [message, setMessage] = useState('');
     const senderId = sessionStorage.getItem('id');
-    const receiverId = 'MAD-CDM-100-001';
+    const receiverId = '2';
     const handleSubmit = (e) => {
         e.preventDefault();
         
