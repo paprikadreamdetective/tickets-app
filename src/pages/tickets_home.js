@@ -12,6 +12,8 @@ import {
   ModalBody,
   FormGroup,
   ModalFooter,
+  Row, 
+  Col
 } from "reactstrap";
 
 import './tickets_home.css'
@@ -19,16 +21,29 @@ import axios from "axios";
 
 
 const Tickets = () => {
+  const estados = {
+    1: 'Pendiente',
+    2: 'En proceso',
+    3: 'Terminado',
+    4: 'Cancelado'
+};
   //const [data, setData] = useState(initialData);
   const [modalActualizar, setModalActualizar] = useState(false);
   const [modalInsertar, setModalInsertar] = useState(false);
   
+  const [selectedData, setSelectedData] = useState(null);
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   
-  const [form, setForm] = useState({
-    id: "",
-    personaje: "",
-    anime: "",
-  });
+  const [tickets, setTickets] = useState([]);
+  const [asuntoTicket, setAsuntoTicket] = useState('');
+  const [descrTicket, setDescrTicket] = useState('');
+  const [fechaCreacion, setFechaCreacion] = useState('');
+  const [categoriaTicket, setCategoriaTicket] = useState('');
+  const [idUsuario, setIdUsuario] = useState('');
+  const [estadoTicket, setEstadoTicket] = useState();
+
+
 
   const mostrarModalActualizar = (dato) => {
     //setForm(dato);
@@ -47,34 +62,10 @@ const Tickets = () => {
     setModalInsertar(false);
   };
   
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
-  const [selectedData, setSelectedData] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const toggleModal = () => setModalOpen(!modalOpen);
-
-    const handleRowClick = (dato) => {
-        setSelectedData(dato);
-        toggleModal();
-    };
-
-    const [tickets, setTickets] = useState([]);
-    const [asuntoTicket, setAsuntoTicket] = useState('');
-    const [descrTicket, setDescrTicket] = useState('');
-    const [fechaCreacion, setFechaCreacion] = useState('');
-    const [categoriaTicket, setCategoriaTicket] = useState('');
-    const [idUsuario, setIdUsuario] = useState('');
-    const [estadoTicket, setEstadoTicket] = useState();
-
-    const handleInsertTicket = async (e) => {
-      e.preventDefault();
-  
+  const handleInsertTicket = async (e) => {
+    e.preventDefault();
+    // Enviar los datos al servidor Flask
+    try {
       const data = {
         asunto_ticket: asuntoTicket,
         descripcion_ticket: descrTicket,
@@ -83,46 +74,80 @@ const Tickets = () => {
         id_usuario: sessionStorage.getItem('id'),
         id_estado: estadoTicket
       };
-  
-      // Enviar los datos al servidor Flask
-      try {
-        const response = await fetch('http://localhost:5000/add_ticket', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-  
-        const responseData = await response.json();
-        console.log('Respuesta del servidor:', responseData);
-        // Manejar la respuesta del servidor como sea necesario
-      } catch (error) {
-        console.error('Error al enviar los datos:', error);
+      const response = await fetch('http://localhost:5000/add_ticket', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      const responseData = await response.json();
+      if (responseData.result) {
+        window.confirm(responseData.message);
+        cerrarModalInsertar();
+      } else {
+        window.confirm(responseData.message);
+        cerrarModalInsertar();
       }
-    };
-
-    const handleDeleteTicket = (id) => {
-      const option = window.confirm("¿Estás seguro de eliminar este usuario?");
-      if (option) {
-          axios.post(`http://localhost:5000/remove_ticket/${id}`)
-          .then(response => {
-          console.log(response.data.message);
-          setTickets(tickets.filter(ticket => ticket.id !== id));
-
-          if (response.data.status_code == 200) {
-            window.confirm("Ticket eliminado");
-          }
-          }).catch(error => console.error('Error al eliminar usuario:', error));
-      }
+    } catch (error) {
+      window.confirm(error);
+      cerrarModalInsertar();
+      console.error('Error al enviar los datos:', error);
+    }
   };
 
-    useEffect(() => {
-      fetch('http://localhost:5000/get_tickets')  
-          .then(response => response.json())
-          .then(data => setTickets(data))
-          .catch(error => console.error('Error fetching users:', error));
-    }, []);
+  const handleUpdateTicket = async (e) => {
+    e.preventDefault();
+    try {
+        const data = {
+            asunto_ticket: selectedTicket.asunto_ticket,
+            descripcion_ticket: selectedTicket.descripcion_ticket,
+            fecha_creacion_ticket: selectedTicket.fecha_creacion_ticket,
+            categoria_ticket: selectedTicket.categoria_ticket,
+            id_estado: selectedTicket.id_estado,
+          };
+          const response = await fetch('http://localhost:5000/edit_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+            });
+        const responseData = await response.json();
+        if (responseData.success) {
+            window.confirm(responseData.message);
+            cerrarModalActualizar();
+            // Refresh the users list or update the specific user in the state
+        } else {
+            alert(responseData.message);
+            cerrarModalActualizar();
+        }
+    } catch (error) {
+        console.error("There was an error updating the user!", error);
+    }
+  }
+
+  const handleDeleteTicket = (id) => {
+    const option = window.confirm("¿Estás seguro de eliminar este ticket");
+    if (option) {
+      axios.post(`http://localhost:5000/remove_ticket/${id}`)
+      .then(response => {
+        if (response.data.success) {
+          window.confirm(response.data.message);
+        } else {
+          window.confirm(response.data.message);
+        }
+        setTickets(tickets.filter(ticket => ticket.id !== id));
+      }).catch(error => console.error('Error al eliminar usuario:', error));
+    }
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:5000/get_tickets')  
+        .then(response => response.json())
+        .then(data => setTickets(data))
+        .catch(error => console.error('Error fetching users:', error));
+  }, []);
 
     useEffect(() => {
       const today = new Date();
@@ -190,10 +215,12 @@ const Tickets = () => {
                 {/*<td>{ticket.nombre_usuario}</td>
                 <td>{ticket.estado_actual}</td>*/}
                 <td>
-                  <Button color="primary" onClick={() => mostrarModalActualizar()}>
-                    Editar
+                  <Button color="primary" onClick={() => { setSelectedTicket(ticket); setModalActualizar(true); }}>
+                    <FontAwesomeIcon icon={faEdit} /> {" "} Editar
                   </Button>{" "}
-                  <Button color="danger" onClick={() => handleDeleteTicket(ticket.id_ticket)}>Eliminar</Button>
+                  <Button color="danger" onClick={() => handleDeleteTicket(ticket.id_ticket)}>
+                    <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -204,45 +231,7 @@ const Tickets = () => {
 
       </Container>
 
-      <Modal isOpen={modalActualizar}>
-        <ModalHeader>
-          <div><h3>Editar Registro</h3></div>
-        </ModalHeader>
-
-        <ModalBody>
-          <FormGroup>
-            <label>Id:</label>
-            <input className="form-control" readOnly type="text" value={form.id} />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Personaje:</label>
-            <input
-              className="form-control"
-              name="personaje"
-              type="text"
-              onChange={handleChange}
-              value={form.personaje}
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <label>Anime:</label>
-            <input
-              className="form-control"
-              name="anime"
-              type="text"
-              onChange={handleChange}
-              value={form.anime}
-            />
-          </FormGroup>
-        </ModalBody>
-
-        <ModalFooter>
-          <Button color="primary" >Editar</Button>
-          <Button color="danger" onClick={cerrarModalActualizar}>Cancelar</Button>
-        </ModalFooter>
-      </Modal>
+      
 
       <Modal isOpen={modalInsertar}>
         <ModalHeader>
@@ -317,6 +306,125 @@ const Tickets = () => {
           <Button className="btn btn-danger" onClick={cerrarModalInsertar}>Cancelar</Button>
         </ModalFooter>
       </Modal>
+
+
+      <Modal isOpen={modalActualizar} className="modal-lg">
+    <ModalHeader>
+        <div>
+            <h3>Actualizar Ticket</h3>
+        </div>
+    </ModalHeader>
+    <ModalBody>
+        {selectedTicket && (
+            <>
+                <Row>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Asunto:</label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                value={selectedTicket.asunto_ticket}
+                                onChange={(e) => setSelectedTicket({ ...selectedTicket, asunto_ticket: e.target.value })}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Descripcion:</label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                value={selectedTicket.descripcion_ticket}
+                                onChange={(e) => setSelectedTicket({ ...selectedTicket, descripcion_ticket: e.target.value })}
+                            />
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Fecha de de creacion:</label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                value={selectedTicket.fecha_creacion_ticket}
+                                onChange={(e) => setSelectedTicket({ ...selectedTicket, fecha_creacion_ticket: e.target.value })}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Categoria:</label>
+                            <input
+                                className="form-control"
+                                type="text"
+                                value={selectedTicket.categoria_ticket}
+                                onChange={(e) => setSelectedTicket({ ...selectedTicket, categoria_ticket: e.target.value })}
+                            />
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Estado:</label>
+                            <select
+                                className="form-control"
+                                value={selectedTicket.id_estado}
+                                onChange={(e) => setSelectedTicket({ ...selectedTicket, id_estado: e.target.value })}
+                            >
+                                {/*<option value="">--Seleccione un área--</option>*/}
+                                {Object.entries(estados).map(([num, name]) => (
+                                    <option key={num} value={num}>{name}</option>
+                                ))}
+                            </select>
+                        </FormGroup>
+                    </Col>
+                    
+                </Row>
+                {/*<Row>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Confirmar Contraseña:</label>
+                            <input
+                                className="form-control"
+                                type="password"
+                                value={selectedUser.confirmar_contraseña}
+                                onChange={(e) => setSelectedUser({ ...selectedUser, confirmar_contraseña: e.target.value })}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <label>Rol:</label>
+                            <select
+                                className="form-control"
+                                value={selectedUser.rol_usuario}
+                                onChange={(e) => setSelectedUser({ ...selectedUser, rol_usuario: e.target.value })}
+                            >
+                               
+                                <option value="Admin">Admin</option>
+                                <option value="Usuario">Usuario</option>
+                            </select>
+                        </FormGroup>
+                    </Col>
+                </Row>*/}
+            </>
+        )}
+    </ModalBody>
+    <ModalFooter>
+        <Button color="primary" onClick={handleUpdateTicket}>
+            <FontAwesomeIcon icon={faEdit} /> {" "}Actualizar
+        </Button>
+        <Button className="btn btn-danger" onClick={cerrarModalActualizar}>
+            <FontAwesomeIcon icon={faTimes} /> {" "}Cancelar
+        </Button>
+    </ModalFooter>
+</Modal>
+
+
+
     </motion.div>
   );
 };

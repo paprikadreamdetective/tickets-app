@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Tickets from '../pages/tickets_home';
-const TabPaneTickets = () => {
+import TableAreas from './TableAreas';
+import Charts from '../pages/dashboard'
+
+import './TabPaneAreas.css'
+const TabPaneAreas = () => {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
@@ -18,7 +22,7 @@ const TabPaneTickets = () => {
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Gestion de Tickets
+            Gestion de Areas
           </NavLink>
         </NavItem>
         <NavItem>
@@ -26,7 +30,7 @@ const TabPaneTickets = () => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            Tab 2
+            Estadisticas
           </NavLink>
         </NavItem>
         <NavItem>
@@ -34,7 +38,7 @@ const TabPaneTickets = () => {
             className={classnames({ active: activeTab === '3' })}
             onClick={() => { toggle('3'); }}
           >
-            Tab 3
+            Reportes
           </NavLink>
         </NavItem>
         <NavItem>
@@ -47,16 +51,17 @@ const TabPaneTickets = () => {
         </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
+
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h4>Gestion de tickets</h4>
-              <Tickets/>
+              <h4>Gestion de Areas</h4>
+              <TableAreas/>
             </Col>
           </Row>
         </TabPane>
+
         <TabPane tabId="2">
-
           <Row>
             <Col sm="6">
               <Card body>
@@ -90,8 +95,9 @@ const TabPaneTickets = () => {
               </Card>
             </Col>
           </Row>
-
+          <Charts></Charts>
         </TabPane>
+
         <TabPane tabId="3">
           <Row>
             <Col sm="12">
@@ -99,12 +105,15 @@ const TabPaneTickets = () => {
             </Col>
           </Row>
         </TabPane>
+
         <TabPane tabId="4">
-          <Row>
+        <div className="custom-tab-container">
+        <Row>
             <Col sm="12">
-              <h4>Tab 4 Contents</h4>
+                <h4>Tab 4 Contents</h4>
             </Col>
-          </Row>
+        </Row>
+        </div>
         </TabPane>
       </TabContent>
     </div>
@@ -112,4 +121,4 @@ const TabPaneTickets = () => {
   );
 };
 
-export default TabPaneTickets;
+export default TabPaneAreas;

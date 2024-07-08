@@ -9,6 +9,7 @@ import Dashboard from './pages/best_dashboard';
 import UsersPage from './pages/users';
 import Chats from './pages/chats';
 import TicketsPane from './pages/tickets';
+import Areas from './pages/areas';
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -46,6 +47,7 @@ function App(){
                 <Route exact path="home" element={<Home />}>
                   <Route path="tickets_home" element={<Tickets />} />
                   <Route path="ticketsTab" element={<TicketsPane />} />
+                  <Route path="areas" element={<Areas/>}/>
                   <Route path="chats" element={<Chats />} />
                   <Route path="reports" element={<ReporteTabla data={data} />} />
                   <Route index element={<Dashboard/>}/>

@@ -1,8 +1,9 @@
 import SidebarHomeMenu from "../components/SidebarHomeMenu";
-import Content from "../components/ContentTopbar";
+//mport Content from "../components/ContentTopbar";
 import Tickets from "./tickets_home";
 import Topbar from "../components/TopbarHome";
 import TopbarDashboard from "../components/TopbarDashboard";
+
 
 import { useEffect } from "react";
 import { useState } from "react";
@@ -15,6 +16,9 @@ import { Container } from "reactstrap";
 
 
 function Home() {
+
+    
+  
 
     const [collapsed, setCollapsed] = useState(false);
     const [image, setImage] = useState(false);
@@ -71,7 +75,10 @@ function Home() {
                             <div>
                                 <Outlet/>
                             </div>
-                        </div>
+                        </div>*
+                  
+ 
+     
             </motion.div>
         </>
     );

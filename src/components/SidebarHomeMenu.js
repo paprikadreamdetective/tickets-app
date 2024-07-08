@@ -82,7 +82,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                     </NavItem>
                     <NavItem>
                         
-                        <NavLink tag={Link} to="tickets_home" activeClassName="active" className="nav-link">
+                        <NavLink tag={Link} to="ticketsTab" activeClassName="active" className="nav-link">
                             <FontAwesomeIcon icon={faTicket} className="mr-2" />
                             {"              "} Tickets
                         </NavLink>
@@ -94,7 +94,7 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/pages"} >
+                        <NavLink tag={Link} to={"areas"} >
                             <FontAwesomeIcon icon={faList} className="mr-2" />
                             {"              "} Areas
                         </NavLink>
@@ -117,12 +117,12 @@ function SidebarHomeMenu({ isOpen, toggle }) {
                             {"              "} Problemas
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/*<NavItem>
                         <NavLink tag={Link} to={"ticketsTab"}>
                             <FontAwesomeIcon icon={faGears} className="mr-2" />
                             {"              "} Configuracion
                         </NavLink>
-                    </NavItem>
+                    </NavItem>*/}
                     
                 </Nav>
                 

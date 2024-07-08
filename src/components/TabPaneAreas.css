@@ -1,0 +1,9 @@
+.custom-tab-container {
+    width: 100%; /* Puedes ajustar el ancho según sea necesario */
+    max-width: 1000px; /* Ajusta el ancho máximo según sea necesario */
+    padding: 20px; /* Ajusta el padding según sea necesario */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    background-color: #f8f9fa; /* Color de fondo opcional */
+    border: 1px solid #dee2e6; /* Borde opcional */
+    border-radius: 8px; /* Esquinas redondeadas opcionales */
+}

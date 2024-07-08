@@ -11,9 +11,9 @@ const Chats = () => {
 
   return (
     
-    <div>
+    <div className='chat-container'>
        <ChatContent ></ChatContent>
-       <MessagesPane/>
+       
         <SendMessage/>
     </div>
    

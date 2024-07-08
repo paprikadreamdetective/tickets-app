@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faUserEdit,  faTimes, faUserPlus, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPlaneDeparture,faList, faTrash, faUserEdit,  faTimes, faUserPlus, faUser, faEdit } from '@fortawesome/free-solid-svg-icons';
 import {
     MDBCol,
     MDBContainer,
@@ -35,9 +35,9 @@ import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion } from "framer-motion";
 import UserPicDefault from '../pics/user_default.jpg'
-import './users.css';
+import './TableAreas.css';
 
-function UsersPage() {
+function TableAreas() {
     const roles = {
         admin: 'Admin',
         usuario: 'Usuario'
@@ -54,6 +54,8 @@ function UsersPage() {
     };
 
     const [users, setUsers] = useState([]);
+    const [areasState, setAreas] = useState([]);
+
     const [modalInsertar, setModalInsertar] = useState(false);
     const [modalEditar, setModalEditar] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -178,9 +180,9 @@ function UsersPage() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/get_users')  
+        fetch('http://localhost:5000/get_areas')  
             .then(response => response.json())
-            .then(data => setUsers(data))
+            .then(data => setAreas(data))
             .catch(error => console.error('Error fetching users:', error));
     }, []);
 
@@ -200,44 +202,55 @@ function UsersPage() {
       }}
     >
             <Container>
-                <h3>Usuarios</h3>
+                <h3>Areas</h3>
             </Container>
             <Container>
                 <Button color="success"  onClick={mostrarModalInsertar}>
-                    <FontAwesomeIcon icon={faUserPlus} /> {" "} Añadir Usuario
+                    <FontAwesomeIcon icon={faPlus} /> {" "} Añadir Area
                 </Button>
             </Container>
             <Container className="d-flex justify-content-center align-items-center min-vh-10">
                 <div className='users-table-container'>
                     <Table striped responsive hover className="users-table-responsive">
-                        <thead className='users-table-thead'>
+                        {/*<thead className='users-table-thead'>
                             <tr>
+                                
+
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido Paterno</th>
-                            <th>Apellido Materno</th>
-                            <th>Email</th>
-                            <th>Area</th>
+                            <th>Nombre area</th>
+                            
+                            </tr>
+                        </thead>*/}
+
+                        <thead className='users-table-thead'>
+                         <tr>
+                                <th className='column-id'>ID</th>
+                                <th className='column-name'>Nombre area</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {users.filter(user => user.id_usuario !== sessionStorage.getItem('id')).map((user) => (
-                            <tr key={user.id}>
+                            {areasState.map((area) => (
+                            <tr key={area.id}>
                                 
-                                <td>{user.id_usuario}</td>
-                                <td>{user.nombre_usuario}</td>
-                                <td>{user.apellido_paterno}</td>
-                                <td>{user.apellido_materno}</td>
-                                <td>{user.correo_usuario}</td>
-                                <td>{user.nombre_area}</td>
+                                <td>{area.id_area}</td>
+                                <td>{area.nombre_area}</td>
+                                <td>{/*user.apellido_paterno*/}</td>
+                                <td>{/*user.apellido_materno*/}</td>
+                                <td>{/*user.correo_usuario*/}</td>
+                                <td>{/*user.nombre_area*/}</td>
 
                                 <td>
-                                <Button color="primary" onClick={() => { setSelectedUser(user); setModalEditar(true); }} >
+                                {/*<Button color="primary" onClick={() => { setSelectedUser(user); setModalEditar(true); }} >
                                     <FontAwesomeIcon icon={faUserEdit} /> {" "} Editar
-                                </Button>{" "}
-                                
-                                <Button color="danger" onClick={() => handleDeleteUser(user.id_usuario)} >
+                                </Button>*/}{" "}
+                                <Button color="primary"  >
+                                    <FontAwesomeIcon icon={faEdit} /> {" "} Editar
+                                </Button>{' '}
+                                {/*<Button color="danger" onClick={() => handleDeleteUser(user.id_usuario)} >
+                                    <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
+                                </Button>*/}
+                                <Button color="danger"  >
                                     <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
                                 </Button>
                                 </td>
@@ -384,7 +397,7 @@ function UsersPage() {
         </motion.div>
 
 
-    <Modal isOpen={modalEditar} className="modal-lg">
+        <Modal isOpen={modalEditar} className="modal-lg">
     <ModalHeader>
         <div>
             <h3>Editar Usuario</h3>
@@ -515,4 +528,4 @@ function UsersPage() {
         </>
     );
 }
-export default UsersPage;
+export default TableAreas;
