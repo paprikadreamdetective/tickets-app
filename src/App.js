@@ -10,6 +10,9 @@ import UsersPage from './pages/users';
 import Chats from './pages/chats';
 import TicketsPane from './pages/tickets';
 import Areas from './pages/areas';
+import HomeUsers from './pages/home_users';
+import TicketsUser from './pages/tickets_user';
+import ProfileUser from './pages/ProfileUser';
 
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -44,16 +47,22 @@ function App(){
       <LayoutGroup>
           <Routes>
             <Route path="/" element={<SignIn />}/>
-                <Route exact path="home" element={<Home />}>
-                  <Route path="tickets_home" element={<Tickets />} />
-                  <Route path="ticketsTab" element={<TicketsPane />} />
-                  <Route path="areas" element={<Areas/>}/>
-                  <Route path="chats" element={<Chats />} />
-                  <Route path="reports" element={<ReporteTabla data={data} />} />
-                  <Route index element={<Dashboard/>}/>
-                  <Route path="users" element={<UsersPage/>}/>
-                </Route>
-              <Route path="/impostor" element={<SignInImpostor/>}/>
+              {/*Rutas relacionadas con el rol de Administrador*/}
+              <Route exact path="home" element={<Home />}>
+                <Route path="tickets_home" element={<Tickets />} />
+                <Route path="ticketsTab" element={<TicketsPane />} />
+                <Route path="areas" element={<Areas/>}/>
+                <Route path="chats" element={<Chats />} />
+                <Route path="reports" element={<ReporteTabla data={data} />} />
+                <Route index element={<Dashboard/>}/>
+                <Route path="users" element={<UsersPage/>}/>  
+              </Route>
+              {/*Rutas relacionadas con el rol de Usuario*/}
+              <Route exact path="HomeUsers" element={<HomeUsers/>}>
+                <Route path="TicketsUser" element={<TicketsUser/>}/>
+                <Route path="ProfileUser" element={<ProfileUser/>}/>
+                <Route path="ChatUser"/>
+              </Route>
           </Routes>
       </LayoutGroup>
     </BrowserRouter>

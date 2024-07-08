@@ -75,7 +75,7 @@ function Home() {
                             <div>
                                 <Outlet/>
                             </div>
-                        </div>*
+                        </div>
                   
  
      

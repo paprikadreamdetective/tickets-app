@@ -12,7 +12,7 @@ const AuthUserForm = () => {
     const [password, setPassword] = useState('')
     const [message, setMessage] = useState('')
     const navigate = useNavigate();
-    
+    const navigateToUserHome = useNavigate();
     const handleLogin = async (e) => {
       e.preventDefault();
       try {
@@ -37,7 +37,7 @@ const AuthUserForm = () => {
             if ("Admin" == sessionStorage.getItem('role')) {
               navigate("/home");
             } else if ("Usuario" == sessionStorage.getItem('role')) {
-              navigate("/home_users");
+              navigateToUserHome("/HomeUsers");
             }
           } else {
             setMessage(data.message);
