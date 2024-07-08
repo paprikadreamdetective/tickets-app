@@ -383,33 +383,6 @@ const Tickets = () => {
                     </Col>
                     
                 </Row>
-                {/*<Row>
-                    <Col md={6}>
-                        <FormGroup>
-                            <label>Confirmar Contraseña:</label>
-                            <input
-                                className="form-control"
-                                type="password"
-                                value={selectedUser.confirmar_contraseña}
-                                onChange={(e) => setSelectedUser({ ...selectedUser, confirmar_contraseña: e.target.value })}
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <label>Rol:</label>
-                            <select
-                                className="form-control"
-                                value={selectedUser.rol_usuario}
-                                onChange={(e) => setSelectedUser({ ...selectedUser, rol_usuario: e.target.value })}
-                            >
-                               
-                                <option value="Admin">Admin</option>
-                                <option value="Usuario">Usuario</option>
-                            </select>
-                        </FormGroup>
-                    </Col>
-                </Row>*/}
             </>
         )}
     </ModalBody>

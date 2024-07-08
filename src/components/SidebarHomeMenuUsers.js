@@ -86,7 +86,7 @@ const SidebarHomeUsers = () => {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, padding: '20px', marginLeft: isOpen ? 200 : 60, transition: 'margin-left 0.3s' }}>
+      <Box component="main" sx={{ flexGrow: 1, padding: '30px', transition: 'margin-left 0.3s' }}>
         {/* El contenido principal se renderizará automáticamente según la ruta */}
       </Box>
     </Box>
