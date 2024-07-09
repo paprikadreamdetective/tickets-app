@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit,  faTimes, faTicket, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit,  faTimes, faTicket, faPlusCircle, faEye } from '@fortawesome/free-solid-svg-icons';
 import {
     Table,
     Button,
@@ -15,9 +15,21 @@ import {
   } from "reactstrap";
 import { motion } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import TicketModal from "../modals/TicketUserModal";
 function TicketsUser () {
     const [tickets, setTickets] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedTicket, setSelectedTicket] = useState(null);
+
+    const handleShowModal = (ticket) => {
+        setSelectedTicket(ticket);
+        setShowModal(true);
+    };
+    
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedTicket(null);
+    };
 
     useEffect(() => {
         fetch('http://localhost:5000/get_tickets')  
@@ -67,7 +79,7 @@ function TicketsUser () {
                     </thead>
 
                     <tbody>
-                        {tickets.map((ticket) => (
+                        {tickets.filter(ticket => ticket.id_usuario === sessionStorage.getItem('id')).map((ticket) => (
                         <tr key={ticket.id}>
                             <td>{ticket.id_ticket}</td>
                             <td>{ticket.asunto_ticket}</td>
@@ -79,9 +91,9 @@ function TicketsUser () {
                             {/*<td>{ticket.nombre_usuario}</td>
                             <td>{ticket.estado_actual}</td>*/}
                             <td>
-                            {/*<Button color="primary" onClick={() => { setSelectedTicket(ticket); setModalActualizar(true); }}>
-                                <FontAwesomeIcon icon={faEdit} /> {" "} Editar
-                            </Button>{" "}*/}
+                            <Button color="primary" onClick={() => handleShowModal(ticket)}>
+                                <FontAwesomeIcon icon={faEye} /> {" "} Ver mas
+                            </Button>{" "}
 
                             {/*<Button color="danger" onClick={() => handleDeleteTicket(ticket.id_ticket)}>
                                 <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
@@ -95,6 +107,11 @@ function TicketsUser () {
                     </div>
                 </Container>
             </motion.div>
+            <TicketModal 
+        show={showModal} 
+        handleClose={handleCloseModal} 
+        ticket={selectedTicket} 
+      />
         </>
     );
 }
