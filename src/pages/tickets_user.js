@@ -1,3 +1,6 @@
+import TicketModal from "../modals/TicketUserModal";
+import InsertTicketModal from "../modals/InsertTicketModal";
+
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit,  faTimes, faTicket, faPlusCircle, faEye } from '@fortawesome/free-solid-svg-icons';
@@ -15,11 +18,14 @@ import {
   } from "reactstrap";
 import { motion } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TicketModal from "../modals/TicketUserModal";
+
 function TicketsUser () {
     const [tickets, setTickets] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [modalInsertTicket, setModalInsertTicket] = useState(false);
     const [selectedTicket, setSelectedTicket] = useState(null);
+    
+    const [modalInsertar, setModalInsertar] = useState(false);
 
     const handleShowModal = (ticket) => {
         setSelectedTicket(ticket);
@@ -30,6 +36,15 @@ function TicketsUser () {
         setShowModal(false);
         setSelectedTicket(null);
     };
+
+    const mostrarModalInsertar = () => {
+        setModalInsertar(true);
+    };
+    
+    const cerrarModalInsertar = () => {
+        setModalInsertar(false);
+    };
+   
 
     useEffect(() => {
         fetch('http://localhost:5000/get_tickets')  
@@ -59,7 +74,7 @@ function TicketsUser () {
                     <h3>Tickets</h3>
                 </Container>
                 <Container>
-                    <Button color="success"  >
+                    <Button color="success"  onClick={mostrarModalInsertar}>
                     <FontAwesomeIcon icon={faPlusCircle} /> {" "} Nuevo Ticket
                     </Button>
                 </Container>
@@ -72,9 +87,7 @@ function TicketsUser () {
                         <th>Asunto</th>
                         <th>Descripcion</th>
                         <th>Fecha</th>
-                        <th>Categoria</th>
-                        <th>Usuario</th>
-                        <th>Area</th>
+                        <th>Estado</th>
                         </tr>
                     </thead>
 
@@ -85,19 +98,11 @@ function TicketsUser () {
                             <td>{ticket.asunto_ticket}</td>
                             <td>{ticket.descripcion_ticket}</td>
                             <td>{ticket.fecha_creacion_ticket}</td>
-                            <td>{ticket.categoria_ticket}</td>
-                            <td>{ticket.nombre_usuario}</td>
-                            <td>{ticket.nombre_area}</td>
-                            {/*<td>{ticket.nombre_usuario}</td>
-                            <td>{ticket.estado_actual}</td>*/}
+                            <td>{ticket.estado_actual}</td>
                             <td>
-                            <Button color="primary" onClick={() => handleShowModal(ticket)}>
-                                <FontAwesomeIcon icon={faEye} /> {" "} Ver mas
-                            </Button>{" "}
-
-                            {/*<Button color="danger" onClick={() => handleDeleteTicket(ticket.id_ticket)}>
-                                <FontAwesomeIcon icon={faTrash} /> {" "} Eliminar
-                            </Button>*/}
+                                <Button color="primary" onClick={() => handleShowModal(ticket)}>
+                                    <FontAwesomeIcon icon={faEye} /> {" "} Ver más
+                                </Button>
                             </td>
                         </tr>
                         ))}
@@ -107,11 +112,8 @@ function TicketsUser () {
                     </div>
                 </Container>
             </motion.div>
-            <TicketModal 
-        show={showModal} 
-        handleClose={handleCloseModal} 
-        ticket={selectedTicket} 
-      />
+            <TicketModal show={showModal} handleClose={handleCloseModal} ticket={selectedTicket}/>
+            <InsertTicketModal show={modalInsertar} cancel={cerrarModalInsertar} />
         </>
     );
 }
