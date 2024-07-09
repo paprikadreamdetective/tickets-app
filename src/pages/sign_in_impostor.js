@@ -11,9 +11,7 @@ import './sign_in_impostor.css'
 function SignInImpostor() {
   return (
     <MDBContainer className="my-5 gradient-form">
-
       <MDBRow>
-
         <MDBCol col='6' className="mb-5">
           <div className="d-flex flex-column ms-5">
 

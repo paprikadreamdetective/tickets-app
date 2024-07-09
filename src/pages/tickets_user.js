@@ -110,9 +110,11 @@ function TicketsUser () {
 
                     </Table>
                     </div>
+                    <TicketModal show={showModal} handleClose={handleCloseModal} ticket={selectedTicket}/>
                 </Container>
+                
             </motion.div>
-            <TicketModal show={showModal} handleClose={handleCloseModal} ticket={selectedTicket}/>
+            
             <InsertTicketModal show={modalInsertar} cancel={cerrarModalInsertar} />
         </>
     );

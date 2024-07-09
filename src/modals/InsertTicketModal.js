@@ -72,10 +72,10 @@ const InsertTicketModal = ( { show, cancel } ) => {
                 method: 'POST',
                 body: formData,
               });
-              const contentType = response.headers.get("content-type");
+              /*const contentType = response.headers.get("content-type");
               if (!contentType || !contentType.includes("application/json")) {
                 throw new TypeError("La respuesta no es JSON");
-              }
+              }*/
             const responseData = await response.json();
             console.log(response.message)
             if (responseData.success) {
@@ -161,10 +161,11 @@ const InsertTicketModal = ( { show, cancel } ) => {
                 <Col md={6}>
                 <FormGroup>
                 <label>Adjuntar archivo:</label>
-              <Input
-                type="file"
-                onChange={handleFileChange}
-              />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
                 {filePreview && (
                 <div className="mt-2">
                   <img src={filePreview} alt="Vista previa" style={{ width: '100%', maxHeight: '200px' }} />

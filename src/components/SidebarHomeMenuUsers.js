@@ -48,6 +48,7 @@ const SidebarHomeUsers = () => {
             boxSizing: 'border-box',
             backgroundColor: '#343a40',
             color: 'white',
+            zIndex: 1000,
           },
         }}
       >

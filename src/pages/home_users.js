@@ -26,9 +26,9 @@ function HomeUsers () {
                 }}
                 
                 className="App wrapper">
-        <div>
+        
           <SidebarHomeUsers/>
-        </div>
+        
         <div>
           <Outlet/>
         </div>
