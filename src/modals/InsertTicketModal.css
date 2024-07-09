@@ -1,0 +1,60 @@
+.insert-ticket-modal .modal-lg {
+    max-width: 80%;
+  }
+  
+  .insert-ticket-modal .modal-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+  }
+  
+  .insert-ticket-modal .modal-header h3 {
+    margin: 0;
+  }
+  
+  .insert-ticket-modal .modal-body {
+    padding: 20px;
+  }
+  
+  .insert-ticket-modal .form-group label {
+    font-weight: bold;
+  }
+  
+  .insert-ticket-modal .form-control {
+    margin-bottom: 15px;
+  }
+  
+  .insert-ticket-modal .modal-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+
+/*
+.insert-ticket-modal .modal-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+  }
+  
+  .insert-ticket-modal .modal-header h3 {
+    margin: 0;
+  }
+  
+  .insert-ticket-modal .modal-body {
+    padding: 20px;
+  }
+  
+  .insert-ticket-modal .form-group label {
+    font-weight: bold;
+  }
+  
+  .insert-ticket-modal .form-control {
+    margin-bottom: 15px;
+  }
+  
+  .insert-ticket-modal .modal-footer {
+    display: flex;
+    justify-content: space-between;
+  }*/
+  

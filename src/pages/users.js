@@ -252,7 +252,6 @@ function UsersPage() {
             <ModalHeader>
                 <div>
                     <h3>Nuevo Usuario</h3>
-                    
                 </div>
             </ModalHeader>
             <ModalBody>
